@@ -64,7 +64,7 @@ public class BatchServiceImpl implements BatchService {
 
     private BaseResponse<Boolean> setEnabled(List<ConfigPO> list, String enabled) {
         for (ConfigPO po: list) {
-            po.setEnabled(Short.parseShort("1"));
+            po.setEnabled(Short.parseShort(enabled));
         }
         int count = configPOMapper.batchUpdateConfig(list);
         if (1 == count) {
