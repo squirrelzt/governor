@@ -44,7 +44,10 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="config" domainObjectName="ConfigPO" >
+        <table tableName="config" domainObjectName="ConfigPO">
+            <columnOverride column="last_mod_stamp" property="lastModStamp"
+                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"
+                            javaType="java.time.LocalDateTime"/>
         </table>
     </context>
 </generatorConfiguration>

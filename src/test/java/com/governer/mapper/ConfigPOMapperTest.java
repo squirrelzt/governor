@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,14 +24,14 @@ public class ConfigPOMapperTest {
         po1.setId(1L);
         po1.setEnabled(Short.parseShort("1"));
         po1.setDescription("批量启动1");
-        po1.setLastModStamp(new Date());
+        po1.setLastModStamp(LocalDateTime.now());
         list.add(po1);
 
         ConfigPO po2 = new ConfigPO();
         po2.setId(2L);
         po2.setEnabled(Short.parseShort("1"));
         po2.setDescription("批量启动2");
-        po2.setLastModStamp(new Date());
+        po2.setLastModStamp(LocalDateTime.now());
         list.add(po2);
 
         int count = configPOMapper.batchUpdateConfig(list);

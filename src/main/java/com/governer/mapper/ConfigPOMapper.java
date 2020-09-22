@@ -29,7 +29,7 @@ public interface ConfigPOMapper {
         "values (#{id,jdbcType=BIGINT}, #{appName,jdbcType=VARCHAR}, ",
         "#{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{json,jdbcType=VARCHAR}, ",
         "#{cron,jdbcType=VARCHAR}, #{enabled,jdbcType=SMALLINT}, ",
-        "#{description,jdbcType=VARCHAR}, #{lastModStamp,jdbcType=TIMESTAMP})"
+        "#{description,jdbcType=VARCHAR}, #{lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler})"
     })
     int insert(ConfigPO record);
 
@@ -63,7 +63,7 @@ public interface ConfigPOMapper {
           "cron = #{cron,jdbcType=VARCHAR},",
           "enabled = #{enabled,jdbcType=SMALLINT},",
           "description = #{description,jdbcType=VARCHAR},",
-          "last_mod_stamp = #{lastModStamp,jdbcType=TIMESTAMP}",
+          "last_mod_stamp = #{lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(ConfigPO record);

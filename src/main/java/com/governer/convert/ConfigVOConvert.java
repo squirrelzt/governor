@@ -17,7 +17,7 @@ public interface ConfigVOConvert {
 
     @Mappings({
         @Mapping(source = "appName", target = "app_name"),
-        @Mapping(source = "lastModStamp", target = "last_mod_stamp")
+        @Mapping(source = "lastModStamp", target = "last_mod_stamp", dateFormat="yyyy-MM-dd hh:mm:ss")
     })
     ConfigResponseVO convertConfigPO(ConfigPO configPO);
 

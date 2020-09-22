@@ -1,7 +1,7 @@
 package com.governer.domain.po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ConfigPO implements Serializable {
     private Long id;
@@ -20,7 +20,7 @@ public class ConfigPO implements Serializable {
 
     private String description;
 
-    private Date lastModStamp;
+    private LocalDateTime lastModStamp;
 
     private static final long serialVersionUID = 1L;
 
@@ -128,16 +128,16 @@ public class ConfigPO implements Serializable {
         this.description = description == null ? null : description.trim();
     }
 
-    public Date getLastModStamp() {
+    public LocalDateTime getLastModStamp() {
         return lastModStamp;
     }
 
-    public ConfigPO withLastModStamp(Date lastModStamp) {
+    public ConfigPO withLastModStamp(LocalDateTime lastModStamp) {
         this.setLastModStamp(lastModStamp);
         return this;
     }
 
-    public void setLastModStamp(Date lastModStamp) {
+    public void setLastModStamp(LocalDateTime lastModStamp) {
         this.lastModStamp = lastModStamp;
     }
 

@@ -42,6 +42,8 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public BaseResponse<Boolean> save(ConfigRequestVO requestVO) {
         ConfigPO configPO = ConfigVOConvert.INSTANCE.convertConfigRequestVO(requestVO);
+        long id = configPO.getId();
+        configPO.setLastModStamp(LocalDateTime.now());
         int count = configPOMapper.insertSelective(configPO);
         if (1 == count) {
             return BaseResponse.ok(Boolean.TRUE);

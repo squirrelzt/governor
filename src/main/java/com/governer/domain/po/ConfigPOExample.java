@@ -1,7 +1,7 @@
 package com.governer.domain.po;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ConfigPOExample {
@@ -65,19 +65,50 @@ public class ConfigPOExample {
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> lastModStampCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<>();
+            lastModStampCriteria = new ArrayList<>();
+        }
+
+        public List<Criterion> getLastModStampCriteria() {
+            return lastModStampCriteria;
+        }
+
+        protected void addLastModStampCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            lastModStampCriteria.add(new Criterion(condition, value, "org.apache.ibatis.type.LocalDateTimeTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addLastModStampCriterion(String condition, LocalDateTime value1, LocalDateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            lastModStampCriteria.add(new Criterion(condition, value1, value2, "org.apache.ibatis.type.LocalDateTimeTypeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || lastModStampCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(lastModStampCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -89,6 +120,7 @@ public class ConfigPOExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -96,6 +128,7 @@ public class ConfigPOExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -103,6 +136,7 @@ public class ConfigPOExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andIdIsNull() {
@@ -655,53 +689,53 @@ public class ConfigPOExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampEqualTo(Date value) {
-            addCriterion("last_mod_stamp =", value, "lastModStamp");
+        public Criteria andLastModStampEqualTo(LocalDateTime value) {
+            addLastModStampCriterion("last_mod_stamp =", value, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampNotEqualTo(Date value) {
-            addCriterion("last_mod_stamp <>", value, "lastModStamp");
+        public Criteria andLastModStampNotEqualTo(LocalDateTime value) {
+            addLastModStampCriterion("last_mod_stamp <>", value, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampGreaterThan(Date value) {
-            addCriterion("last_mod_stamp >", value, "lastModStamp");
+        public Criteria andLastModStampGreaterThan(LocalDateTime value) {
+            addLastModStampCriterion("last_mod_stamp >", value, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_mod_stamp >=", value, "lastModStamp");
+        public Criteria andLastModStampGreaterThanOrEqualTo(LocalDateTime value) {
+            addLastModStampCriterion("last_mod_stamp >=", value, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampLessThan(Date value) {
-            addCriterion("last_mod_stamp <", value, "lastModStamp");
+        public Criteria andLastModStampLessThan(LocalDateTime value) {
+            addLastModStampCriterion("last_mod_stamp <", value, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampLessThanOrEqualTo(Date value) {
-            addCriterion("last_mod_stamp <=", value, "lastModStamp");
+        public Criteria andLastModStampLessThanOrEqualTo(LocalDateTime value) {
+            addLastModStampCriterion("last_mod_stamp <=", value, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampIn(List<Date> values) {
-            addCriterion("last_mod_stamp in", values, "lastModStamp");
+        public Criteria andLastModStampIn(List<LocalDateTime> values) {
+            addLastModStampCriterion("last_mod_stamp in", values, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampNotIn(List<Date> values) {
-            addCriterion("last_mod_stamp not in", values, "lastModStamp");
+        public Criteria andLastModStampNotIn(List<LocalDateTime> values) {
+            addLastModStampCriterion("last_mod_stamp not in", values, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampBetween(Date value1, Date value2) {
-            addCriterion("last_mod_stamp between", value1, value2, "lastModStamp");
+        public Criteria andLastModStampBetween(LocalDateTime value1, LocalDateTime value2) {
+            addLastModStampCriterion("last_mod_stamp between", value1, value2, "lastModStamp");
             return (Criteria) this;
         }
 
-        public Criteria andLastModStampNotBetween(Date value1, Date value2) {
-            addCriterion("last_mod_stamp not between", value1, value2, "lastModStamp");
+        public Criteria andLastModStampNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addLastModStampCriterion("last_mod_stamp not between", value1, value2, "lastModStamp");
             return (Criteria) this;
         }
     }
