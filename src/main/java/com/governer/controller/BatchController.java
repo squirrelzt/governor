@@ -2,6 +2,7 @@ package com.governer.controller;
 
 import com.governer.common.BaseResponse;
 import com.governer.domain.vo.request.ConfigRequestVO;
+import com.governer.domain.vo.request.SelectedDataRequestVO;
 import com.governer.domain.vo.response.ConfigResponseVO;
 import com.governer.service.BatchService;
 import io.swagger.annotations.Api;
@@ -46,9 +47,9 @@ public class BatchController {
     }
     @PostMapping("config/start")
     @ApiOperation(value = "定时-启用", notes = "定时-启用接口")
-    public BaseResponse<Boolean> start(@RequestBody List<ConfigRequestVO> requestVOList) {
+    public BaseResponse<Boolean> start(@RequestBody SelectedDataRequestVO selectedData) {
         try {
-            return batchService.start(requestVOList);
+            return batchService.start(selectedData.getSelectedData());
         }catch (Exception e) {
             log.error("定时-启用接口失败: ", e.getMessage());
             return BaseResponse.fail(e.getMessage());
@@ -57,9 +58,9 @@ public class BatchController {
 
     @PostMapping("config/stop")
     @ApiOperation(value = "定时-停用", notes = "定时-停用接口")
-    public BaseResponse<Boolean> stop(@RequestBody List<ConfigRequestVO> requestVOList) {
+    public BaseResponse<Boolean> stop(@RequestBody SelectedDataRequestVO selectedData) {
         try {
-            return batchService.stop(requestVOList);
+            return batchService.stop(selectedData.getSelectedData());
         }catch (Exception e) {
             log.error("定时-停用接口失败: ", e.getMessage());
             return BaseResponse.fail(e.getMessage());
