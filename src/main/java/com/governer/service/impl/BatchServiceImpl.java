@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -49,13 +51,31 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public BaseResponse<Boolean> start(String appName) {
-        return setEnabled(appName, "1");
+    public BaseResponse<Boolean> start(List<ConfigRequestVO> requestVOList) {
+        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
+        return setEnabled(list, "1");
     }
 
     @Override
-    public BaseResponse<Boolean> stop(String appName) {
-        return setEnabled(appName, "0");
+    public BaseResponse<Boolean> stop(List<ConfigRequestVO> requestVOList) {
+        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
+        return setEnabled(list, "0");
+    }
+
+    private BaseResponse<Boolean> setEnabled(List<ConfigPO> list, String enabled) {
+        for (ConfigPO po: list) {
+            po.setEnabled(Short.parseShort("1"));
+        }
+        int count = configPOMapper.batchUpdateConfig(list);
+        if (1 == count) {
+            return BaseResponse.ok(Boolean.TRUE);
+        } else {
+            if ("1".equals(enabled)) {
+                return BaseResponse.fail("定时-启动失败");
+            } else {
+                return BaseResponse.fail("定时-停用失败");
+            }
+        }
     }
 
     private BaseResponse<Boolean> setEnabled(String appName, String enabled) {

@@ -43,13 +43,13 @@ public class BatchController {
     }
     @PostMapping("config/start")
     @ApiOperation(value = "定时-启用", notes = "定时-启用接口")
-    public BaseResponse<Boolean> start(@RequestParam @ApiParam("应用名称") String app_name) {
-        return batchService.start(app_name);
+    public BaseResponse<Boolean> start(@RequestBody List<ConfigRequestVO> requestVOList) {
+        return batchService.start(requestVOList);
     }
 
     @PostMapping("config/stop")
     @ApiOperation(value = "定时-停用", notes = "定时-停用接口")
-    public BaseResponse<Boolean> stop(@RequestParam @ApiParam("应用名称") String app_name) {
-        return batchService.stop(app_name);
+    public BaseResponse<Boolean> stop(@RequestBody List<ConfigRequestVO> requestVOList) {
+        return batchService.stop(requestVOList);
     }
 }

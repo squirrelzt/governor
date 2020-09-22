@@ -254,4 +254,39 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <update id="batchUpdateConfig" parameterType="map">
+
+    <foreach collection="list" index="index" item="item"
+             separator=";">
+      update
+      config
+      set
+      <if test="item.appName != null">
+        app_name = #{item.appName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.name != null">
+        name = #{item.name,jdbcType=VARCHAR},
+      </if>
+      <if test="item.type != null">
+        type = #{item.type,jdbcType=VARCHAR},
+      </if>
+      <if test="item.json != null">
+        json = #{item.json,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cron != null">
+        cron = #{item.cron,jdbcType=VARCHAR},
+      </if>
+      <if test="item.enabled != null">
+        enabled = #{item.enabled,jdbcType=SMALLINT},
+      </if>
+      <if test="item.description != null">
+        description = #{item.description,jdbcType=VARCHAR},
+      </if>
+      last_mod_stamp = now()
+      where
+      id =
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
 </mapper>

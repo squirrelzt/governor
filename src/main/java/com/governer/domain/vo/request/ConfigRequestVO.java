@@ -7,6 +7,9 @@ import lombok.Data;
 @Data
 @ApiModel("定时请求类")
 public class ConfigRequestVO {
+    @ApiModelProperty("id")
+    private Long id;
+
     @ApiModelProperty("应用名称")
     private String app_name;
 

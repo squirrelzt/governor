@@ -11,7 +11,7 @@ public interface BatchService {
 
     BaseResponse<Boolean> save(ConfigRequestVO requestVO);
 
-    BaseResponse<Boolean> start(String appName);
+    BaseResponse<Boolean> start(List<ConfigRequestVO> requestVOList);
 
-    BaseResponse<Boolean> stop(String appName);
+    BaseResponse<Boolean> stop(List<ConfigRequestVO> requestVOList);
 }

@@ -24,7 +24,10 @@ public interface ConfigVOConvert {
     List<ConfigResponseVO> convertConfigPOList(List<ConfigPO> list);
 
     @Mappings({
+            @Mapping(source = "id", target = "id"),
             @Mapping(source = "app_name", target = "appName")
     })
     ConfigPO convertConfigRequestVO(ConfigRequestVO requestVO);
+
+    List<ConfigPO> convertConfigRequestVOList(List<ConfigRequestVO> requestVOList);
 }

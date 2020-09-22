@@ -67,4 +67,6 @@ public interface ConfigPOMapper {
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(ConfigPO record);
+
+    int batchUpdateConfig(List<ConfigPO> list);
 }

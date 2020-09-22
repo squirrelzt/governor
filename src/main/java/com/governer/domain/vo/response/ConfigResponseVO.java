@@ -10,8 +10,8 @@ import java.util.Date;
 @Data
 @ApiModel("定时-查询返回值类")
 public class ConfigResponseVO {
-//    @ApiModelProperty("id")
-//    private Long id;
+    @ApiModelProperty("id")
+    private Long id;
 
     @ApiModelProperty("应用名称")
     private String app_name;
