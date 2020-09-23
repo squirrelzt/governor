@@ -44,14 +44,14 @@ public class BatchServiceImpl implements BatchService {
     public BaseResponse<Boolean> save(ConfigRequestVO requestVO) {
         ConfigPO configPO = ConfigVOConvert.INSTANCE.convertConfigRequestVO(requestVO);
         configPO.setLastModStamp(LocalDateTime.now());
-        long id = configPO.getId();
+        Object id = configPO.getId();
         int count = 0;
         if (Objects.isNull(id)) {
             count = configPOMapper.insertSelective(configPO);
         } else {
             ConfigPOExample example = new ConfigPOExample();
             ConfigPOExample.Criteria criteria = example.createCriteria();
-            criteria.andIdEqualTo(id);
+            criteria.andIdEqualTo((long)id);
             count = configPOMapper.updateByExampleSelective(configPO, example);
         }
         if (1 == count) {
