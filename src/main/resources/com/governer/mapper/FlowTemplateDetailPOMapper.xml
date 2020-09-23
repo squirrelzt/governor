@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.governer.mapper.FlowTemplateDetailPOMapper">
+  <resultMap id="BaseResultMap" type="com.governer.domain.po.FlowTemplateDetailPO">
+    <id column="flow_name" jdbcType="VARCHAR" property="flowName" />
+    <result column="sort_no" jdbcType="SMALLINT" property="sortNo" />
+    <result column="depend_task" jdbcType="VARCHAR" property="dependTask" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_type_name" jdbcType="VARCHAR" property="taskTypeName" />
+    <result column="is_run" jdbcType="SMALLINT" property="isRun" />
+    <result column="is_skip" jdbcType="SMALLINT" property="isSkip" />
+    <result column="dus_list" jdbcType="VARCHAR" property="dusList" />
+    <result column="service_list" jdbcType="VARCHAR" property="serviceList" />
+    <result column="task_type" jdbcType="VARCHAR" property="taskType" />
+    <result column="retry_time" jdbcType="SMALLINT" property="retryTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="last_mod_stamp" jdbcType="OTHER" property="lastModStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+    <result column="create_stamp" jdbcType="OTHER" property="createStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.lastModStampCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.createStampCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.lastModStampCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.createStampCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} and #{criterion.secondValue,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    flow_name, sort_no, depend_task, task_name, task_type_name, is_run, is_skip, dus_list, 
+    service_list, task_type, retry_time, description, last_mod_stamp, create_stamp
+  </sql>
+  <select id="selectByExample" parameterType="com.governer.domain.po.FlowTemplateDetailPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ds_flow_template_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.governer.domain.po.FlowTemplateDetailPOExample">
+    delete from ds_flow_template_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="com.governer.domain.po.FlowTemplateDetailPO">
+    insert into ds_flow_template_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flowName != null">
+        flow_name,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="dependTask != null">
+        depend_task,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="taskTypeName != null">
+        task_type_name,
+      </if>
+      <if test="isRun != null">
+        is_run,
+      </if>
+      <if test="isSkip != null">
+        is_skip,
+      </if>
+      <if test="dusList != null">
+        dus_list,
+      </if>
+      <if test="serviceList != null">
+        service_list,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="retryTime != null">
+        retry_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="lastModStamp != null">
+        last_mod_stamp,
+      </if>
+      <if test="createStamp != null">
+        create_stamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flowName != null">
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="dependTask != null">
+        #{dependTask,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskTypeName != null">
+        #{taskTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isRun != null">
+        #{isRun,jdbcType=SMALLINT},
+      </if>
+      <if test="isSkip != null">
+        #{isSkip,jdbcType=SMALLINT},
+      </if>
+      <if test="dusList != null">
+        #{dusList,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceList != null">
+        #{serviceList,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="retryTime != null">
+        #{retryTime,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModStamp != null">
+        #{lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="createStamp != null">
+        #{createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.governer.domain.po.FlowTemplateDetailPOExample" resultType="java.lang.Long">
+    select count(*) from ds_flow_template_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ds_flow_template_detail
+    <set>
+      <if test="record.flowName != null">
+        flow_name = #{record.flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null">
+        sort_no = #{record.sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dependTask != null">
+        depend_task = #{record.dependTask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskName != null">
+        task_name = #{record.taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskTypeName != null">
+        task_type_name = #{record.taskTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRun != null">
+        is_run = #{record.isRun,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isSkip != null">
+        is_skip = #{record.isSkip,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dusList != null">
+        dus_list = #{record.dusList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceList != null">
+        service_list = #{record.serviceList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskType != null">
+        task_type = #{record.taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retryTime != null">
+        retry_time = #{record.retryTime,jdbcType=SMALLINT},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModStamp != null">
+        last_mod_stamp = #{record.lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="record.createStamp != null">
+        create_stamp = #{record.createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ds_flow_template_detail
+    set flow_name = #{record.flowName,jdbcType=VARCHAR},
+      sort_no = #{record.sortNo,jdbcType=SMALLINT},
+      depend_task = #{record.dependTask,jdbcType=VARCHAR},
+      task_name = #{record.taskName,jdbcType=VARCHAR},
+      task_type_name = #{record.taskTypeName,jdbcType=VARCHAR},
+      is_run = #{record.isRun,jdbcType=SMALLINT},
+      is_skip = #{record.isSkip,jdbcType=SMALLINT},
+      dus_list = #{record.dusList,jdbcType=VARCHAR},
+      service_list = #{record.serviceList,jdbcType=VARCHAR},
+      task_type = #{record.taskType,jdbcType=VARCHAR},
+      retry_time = #{record.retryTime,jdbcType=SMALLINT},
+      description = #{record.description,jdbcType=VARCHAR},
+      last_mod_stamp = #{record.lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      create_stamp = #{record.createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.FlowTemplateDetailPO">
+    update ds_flow_template_detail
+    <set>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=SMALLINT},
+      </if>
+      <if test="dependTask != null">
+        depend_task = #{dependTask,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskTypeName != null">
+        task_type_name = #{taskTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isRun != null">
+        is_run = #{isRun,jdbcType=SMALLINT},
+      </if>
+      <if test="isSkip != null">
+        is_skip = #{isSkip,jdbcType=SMALLINT},
+      </if>
+      <if test="dusList != null">
+        dus_list = #{dusList,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceList != null">
+        service_list = #{serviceList,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="retryTime != null">
+        retry_time = #{retryTime,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModStamp != null">
+        last_mod_stamp = #{lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
+      </if>
+    </set>
+    where flow_name = #{flowName,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.governer.domain.po.FlowTemplateDetailPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ds_flow_template_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
