@@ -29,6 +29,7 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public BaseResponse<List<ConfigResponseVO>> config(String appName, String name) {
         ConfigPOExample example = new ConfigPOExample();
+        example.setOrderByClause("id ASC");
         ConfigPOExample.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(appName)) {
             criteria.andAppNameEqualTo(appName);
@@ -64,21 +65,21 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public BaseResponse<Boolean> start(List<ConfigRequestVO> requestVOList) {
-        requestVOList = requestVOList.stream().filter(vo -> vo.getEnabled() == 1).collect(Collectors.toList());
-        if (requestVOList.size() == 0) {
+        List<ConfigRequestVO> stopedList = requestVOList.stream().filter(vo -> vo.getEnabled() == 0).collect(Collectors.toList());
+        if (stopedList.size() == 0) {
             return BaseResponse.ok(Boolean.TRUE);
         }
-        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
+        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(stopedList);
         return setEnabled(list, "1");
     }
 
     @Override
     public BaseResponse<Boolean> stop(List<ConfigRequestVO> requestVOList) {
-        requestVOList = requestVOList.stream().filter(vo -> vo.getEnabled() == 0).collect(Collectors.toList());
-        if (requestVOList.size() == 0) {
+        List<ConfigRequestVO> startedList = requestVOList.stream().filter(vo -> vo.getEnabled() == 1).collect(Collectors.toList());
+        if (startedList.size() == 0) {
             return BaseResponse.ok(Boolean.TRUE);
         }
-        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
+        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(startedList);
         return setEnabled(list, "0");
     }
 
