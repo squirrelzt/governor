@@ -39,8 +39,10 @@ public class BatchController {
     @ApiOperation(value = "定时-保存", notes = "定时-保存接口")
     public BaseResponse<Boolean> save(@RequestBody ConfigRequestVO requestVO) {
         try {
+            log.info(requestVO.toString());
             return batchService.save(requestVO);
         }catch (Exception e) {
+            e.printStackTrace();
             log.error("定时-保存接口失败: ", e.getMessage());
             return BaseResponse.fail(e.getMessage());
         }
