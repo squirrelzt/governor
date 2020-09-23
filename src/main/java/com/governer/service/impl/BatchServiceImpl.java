@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -63,12 +64,20 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public BaseResponse<Boolean> start(List<ConfigRequestVO> requestVOList) {
+        requestVOList = requestVOList.stream().filter(vo -> vo.getEnabled() == 1).collect(Collectors.toList());
+        if (requestVOList.size() == 0) {
+            return BaseResponse.ok(Boolean.TRUE);
+        }
         List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
         return setEnabled(list, "1");
     }
 
     @Override
     public BaseResponse<Boolean> stop(List<ConfigRequestVO> requestVOList) {
+        requestVOList = requestVOList.stream().filter(vo -> vo.getEnabled() == 0).collect(Collectors.toList());
+        if (requestVOList.size() == 0) {
+            return BaseResponse.ok(Boolean.TRUE);
+        }
         List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
         return setEnabled(list, "0");
     }
