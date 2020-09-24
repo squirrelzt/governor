@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.governer.mapper.batch.schedule.TimerMMapper">
-  <resultMap id="BaseResultMap" type="com.governer.domain.po.batch.schedule.TimerM">
-    <id column="app_name" jdbcType="VARCHAR" property="appName" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="cron" jdbcType="VARCHAR" property="cron" />
-    <result column="json" jdbcType="VARCHAR" property="json" />
-    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+<mapper namespace="com.governer.mapper.FlowDetailTemplatePOMapper">
+  <resultMap id="BaseResultMap" type="com.governer.domain.po.FlowDetailTemplatePO">
+    <id column="flow_name" jdbcType="VARCHAR" property="flowName" />
+    <result column="sort_no" jdbcType="SMALLINT" property="sortNo" />
+    <result column="depend_task" jdbcType="VARCHAR" property="dependTask" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_type_name" jdbcType="VARCHAR" property="taskTypeName" />
+    <result column="is_run" jdbcType="SMALLINT" property="isRun" />
+    <result column="is_skip" jdbcType="SMALLINT" property="isSkip" />
+    <result column="dus_list" jdbcType="VARCHAR" property="dusList" />
+    <result column="service_list" jdbcType="VARCHAR" property="serviceList" />
+    <result column="task_type" jdbcType="VARCHAR" property="taskType" />
+    <result column="retry_time" jdbcType="SMALLINT" property="retryTime" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="last_mod_stamp" jdbcType="OTHER" property="lastModStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
     <result column="create_stamp" jdbcType="OTHER" property="createStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
@@ -147,15 +152,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    app_name, name, type, cron, json, enabled, description, last_mod_stamp, create_stamp
+    flow_name, sort_no, depend_task, task_name, task_type_name, is_run, is_skip, dus_list, 
+    service_list, task_type, retry_time, description, last_mod_stamp, create_stamp
   </sql>
-  <select id="selectByExample" parameterType="com.governer.domain.po.batch.schedule.TimerMExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.governer.domain.po.FlowDetailTemplatePOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ds_timer_m
+    from ds_flow_detail_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -163,32 +169,47 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.governer.domain.po.batch.schedule.TimerMExample">
-    delete from ds_timer_m
+  <delete id="deleteByExample" parameterType="com.governer.domain.po.FlowDetailTemplatePOExample">
+    delete from ds_flow_detail_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insertSelective" parameterType="com.governer.domain.po.batch.schedule.TimerM">
-    insert into ds_timer_m
+  <insert id="insertSelective" parameterType="com.governer.domain.po.FlowDetailTemplatePO">
+    insert into ds_flow_detail_template
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="appName != null">
-        app_name,
+      <if test="flowName != null">
+        flow_name,
       </if>
-      <if test="name != null">
-        name,
+      <if test="sortNo != null">
+        sort_no,
       </if>
-      <if test="type != null">
-        type,
+      <if test="dependTask != null">
+        depend_task,
       </if>
-      <if test="cron != null">
-        cron,
+      <if test="taskName != null">
+        task_name,
       </if>
-      <if test="json != null">
-        json,
+      <if test="taskTypeName != null">
+        task_type_name,
       </if>
-      <if test="enabled != null">
-        enabled,
+      <if test="isRun != null">
+        is_run,
+      </if>
+      <if test="isSkip != null">
+        is_skip,
+      </if>
+      <if test="dusList != null">
+        dus_list,
+      </if>
+      <if test="serviceList != null">
+        service_list,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="retryTime != null">
+        retry_time,
       </if>
       <if test="description != null">
         description,
@@ -201,23 +222,38 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="appName != null">
-        #{appName,jdbcType=VARCHAR},
+      <if test="flowName != null">
+        #{flowName,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=SMALLINT},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
+      <if test="dependTask != null">
+        #{dependTask,jdbcType=VARCHAR},
       </if>
-      <if test="cron != null">
-        #{cron,jdbcType=VARCHAR},
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
       </if>
-      <if test="json != null">
-        #{json,jdbcType=VARCHAR},
+      <if test="taskTypeName != null">
+        #{taskTypeName,jdbcType=VARCHAR},
       </if>
-      <if test="enabled != null">
-        #{enabled,jdbcType=INTEGER},
+      <if test="isRun != null">
+        #{isRun,jdbcType=SMALLINT},
+      </if>
+      <if test="isSkip != null">
+        #{isSkip,jdbcType=SMALLINT},
+      </if>
+      <if test="dusList != null">
+        #{dusList,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceList != null">
+        #{serviceList,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="retryTime != null">
+        #{retryTime,jdbcType=SMALLINT},
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
@@ -230,32 +266,47 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.governer.domain.po.batch.schedule.TimerMExample" resultType="java.lang.Long">
-    select count(*) from ds_timer_m
+  <select id="countByExample" parameterType="com.governer.domain.po.FlowDetailTemplatePOExample" resultType="java.lang.Long">
+    select count(*) from ds_flow_detail_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update ds_timer_m
+    update ds_flow_detail_template
     <set>
-      <if test="record.appName != null">
-        app_name = #{record.appName,jdbcType=VARCHAR},
+      <if test="record.flowName != null">
+        flow_name = #{record.flowName,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.sortNo != null">
+        sort_no = #{record.sortNo,jdbcType=SMALLINT},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=VARCHAR},
+      <if test="record.dependTask != null">
+        depend_task = #{record.dependTask,jdbcType=VARCHAR},
       </if>
-      <if test="record.cron != null">
-        cron = #{record.cron,jdbcType=VARCHAR},
+      <if test="record.taskName != null">
+        task_name = #{record.taskName,jdbcType=VARCHAR},
       </if>
-      <if test="record.json != null">
-        json = #{record.json,jdbcType=VARCHAR},
+      <if test="record.taskTypeName != null">
+        task_type_name = #{record.taskTypeName,jdbcType=VARCHAR},
       </if>
-      <if test="record.enabled != null">
-        enabled = #{record.enabled,jdbcType=INTEGER},
+      <if test="record.isRun != null">
+        is_run = #{record.isRun,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isSkip != null">
+        is_skip = #{record.isSkip,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dusList != null">
+        dus_list = #{record.dusList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceList != null">
+        service_list = #{record.serviceList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskType != null">
+        task_type = #{record.taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retryTime != null">
+        retry_time = #{record.retryTime,jdbcType=SMALLINT},
       </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
@@ -272,13 +323,18 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update ds_timer_m
-    set app_name = #{record.appName,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
-      cron = #{record.cron,jdbcType=VARCHAR},
-      json = #{record.json,jdbcType=VARCHAR},
-      enabled = #{record.enabled,jdbcType=INTEGER},
+    update ds_flow_detail_template
+    set flow_name = #{record.flowName,jdbcType=VARCHAR},
+      sort_no = #{record.sortNo,jdbcType=SMALLINT},
+      depend_task = #{record.dependTask,jdbcType=VARCHAR},
+      task_name = #{record.taskName,jdbcType=VARCHAR},
+      task_type_name = #{record.taskTypeName,jdbcType=VARCHAR},
+      is_run = #{record.isRun,jdbcType=SMALLINT},
+      is_skip = #{record.isSkip,jdbcType=SMALLINT},
+      dus_list = #{record.dusList,jdbcType=VARCHAR},
+      service_list = #{record.serviceList,jdbcType=VARCHAR},
+      task_type = #{record.taskType,jdbcType=VARCHAR},
+      retry_time = #{record.retryTime,jdbcType=SMALLINT},
       description = #{record.description,jdbcType=VARCHAR},
       last_mod_stamp = #{record.lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
       create_stamp = #{record.createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
@@ -286,23 +342,38 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.batch.schedule.TimerM">
-    update ds_timer_m
+  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.FlowDetailTemplatePO">
+    update ds_flow_detail_template
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=SMALLINT},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
+      <if test="dependTask != null">
+        depend_task = #{dependTask,jdbcType=VARCHAR},
       </if>
-      <if test="cron != null">
-        cron = #{cron,jdbcType=VARCHAR},
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
       </if>
-      <if test="json != null">
-        json = #{json,jdbcType=VARCHAR},
+      <if test="taskTypeName != null">
+        task_type_name = #{taskTypeName,jdbcType=VARCHAR},
       </if>
-      <if test="enabled != null">
-        enabled = #{enabled,jdbcType=INTEGER},
+      <if test="isRun != null">
+        is_run = #{isRun,jdbcType=SMALLINT},
+      </if>
+      <if test="isSkip != null">
+        is_skip = #{isSkip,jdbcType=SMALLINT},
+      </if>
+      <if test="dusList != null">
+        dus_list = #{dusList,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceList != null">
+        service_list = #{serviceList,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="retryTime != null">
+        retry_time = #{retryTime,jdbcType=SMALLINT},
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
@@ -314,15 +385,15 @@
         create_stamp = #{createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
       </if>
     </set>
-    where app_name = #{appName,jdbcType=VARCHAR}
+    where flow_name = #{flowName,jdbcType=VARCHAR}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="com.governer.domain.po.batch.schedule.TimerMExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="com.governer.domain.po.FlowDetailTemplatePOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ds_timer_m
+    from ds_flow_detail_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

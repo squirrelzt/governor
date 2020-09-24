@@ -28,13 +28,13 @@ public class BatchDesignTaskInsertRequestVO {
     private String flow_name;
 
     @ApiModelProperty("是否产生结果文件")
-    private String is_result;
+    private Short is_result;
 
     @ApiModelProperty("是否允许运行")
     private String is_run;
 
     @ApiModelProperty("是否跳过")
-    private String is_skip;
+    private Short is_skip;
 
     @ApiModelProperty("作业应用名称")
     private String job_application_name;
@@ -46,19 +46,19 @@ public class BatchDesignTaskInsertRequestVO {
     private LocalDateTime last_mod_stamp;
 
     @ApiModelProperty("最大并发任务数")
-    private String max_parall_num;
+    private Short max_parall_num;
 
     @ApiModelProperty("远程作业名称")
     private String remote_job_name;
 
     @ApiModelProperty("重试次数")
-    private String retry_time;
+    private Short retry_time;
 
     @ApiModelProperty("服务列表")
     private String service_list;
 
     @ApiModelProperty("顺序号")
-    private String sort_no;
+    private Short sort_no;
 
     @ApiModelProperty("数据源类型")
     private String source_type;

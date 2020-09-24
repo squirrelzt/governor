@@ -1,9 +1,6 @@
 package com.governer.convert.batch.design;
 
-import com.governer.domain.po.BatchJobTemplatePO;
-import com.governer.domain.po.FlowTemplateDetailPO;
-import com.governer.domain.po.SimpleTaskTemplatePO;
-import com.governer.domain.po.TaskTemplatePO;
+import com.governer.domain.po.*;
 import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -101,5 +98,5 @@ public interface BatchDesignTaskInsertConvert {
             @Mapping(source = "last_mod_stamp", target = "lastModStamp"),
             @Mapping(source = "depend_task", target = "dependTask")
     })
-    FlowTemplateDetailPO convertInsertRequestVO2FlowTemplateDetailPO(BatchDesignTaskInsertRequestVO requestVO);
+    FlowDetailTemplatePO convertInsertRequestVO2FlowTemplateDetailPO(BatchDesignTaskInsertRequestVO requestVO);
 }

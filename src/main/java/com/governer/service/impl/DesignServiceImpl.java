@@ -6,10 +6,7 @@ import com.governer.convert.batch.design.BatchDesignTaskInsertConvert;
 import com.governer.domain.po.*;
 import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
 import com.governer.domain.vo.response.TaskTemplateVO;
-import com.governer.mapper.BatchJobTemplatePOMapper;
-import com.governer.mapper.FlowTemplateDetailPOMapper;
-import com.governer.mapper.SimpleTaskTemplatePOMapper;
-import com.governer.mapper.TaskTemplatePOMapper;
+import com.governer.mapper.*;
 import com.governer.service.DesignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -30,7 +28,7 @@ public class DesignServiceImpl implements DesignService {
     @Autowired
     BatchJobTemplatePOMapper batchJobTemplatePOMapper;
     @Autowired
-    FlowTemplateDetailPOMapper flowTemplateDetailPOMapper;
+    FlowDetailTemplatePOMapper flowDetailTemplatePOMapper;
 
     @Override
     public BaseResponse<List<TaskTemplateVO>> task(String taskName, String taskType, String description) {
@@ -54,13 +52,16 @@ public class DesignServiceImpl implements DesignService {
     @Transactional(rollbackFor = Exception.class)
     public BaseResponse<Boolean> insert(BatchDesignTaskInsertRequestVO requestVO) throws Exception{
         TaskTemplatePO taskTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2TaskTemplatePO(requestVO);
+        taskTemplatePO.setCreateStamp(LocalDateTime.now());
         int count = taskTemplatePOMapper.insert(taskTemplatePO);
         String taskType = requestVO.getTask_type();
         if ("SIMPLE".equals(taskType)) {
             SimpleTaskTemplatePO simpleTaskTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2SimpleTaskTemplatePO(requestVO);
+            simpleTaskTemplatePO.setCreateStamp(LocalDateTime.now());
             int subCount1 = simpleTaskTemplatePOMapper.insert(simpleTaskTemplatePO);
 
             BatchJobTemplatePO batchJobTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2BatchJobTemplatePO(requestVO);
+            batchJobTemplatePO.setCreateStamp(LocalDateTime.now());
             int subCount2 = batchJobTemplatePOMapper.insert(batchJobTemplatePO);
             if (1 == count && 1 == subCount1 && 1 == subCount2) {
                 return BaseResponse.ok(Boolean.TRUE);
@@ -68,8 +69,9 @@ public class DesignServiceImpl implements DesignService {
                 throw new Exception("设计-新增主页面失败");
             }
         } else if ("FLOW".equals(taskType)) {
-            FlowTemplateDetailPO flowTemplateDetailPO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2FlowTemplateDetailPO(requestVO);
-            int subCount1 = flowTemplateDetailPOMapper.insert(flowTemplateDetailPO);
+            FlowDetailTemplatePO flowDetailTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2FlowTemplateDetailPO(requestVO);
+            flowDetailTemplatePO.setCreateStamp(LocalDateTime.now());
+            int subCount1 = flowDetailTemplatePOMapper.insert(flowDetailTemplatePO);
             if (1 == count && 1 == subCount1) {
                 return BaseResponse.ok(Boolean.TRUE);
             } else {

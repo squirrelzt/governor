@@ -1094,62 +1094,52 @@ public class TaskTemplatePOExample {
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityEqualTo(String value) {
+        public Criteria andTaskPriorityEqualTo(Integer value) {
             addCriterion("task_priority =", value, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityNotEqualTo(String value) {
+        public Criteria andTaskPriorityNotEqualTo(Integer value) {
             addCriterion("task_priority <>", value, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityGreaterThan(String value) {
+        public Criteria andTaskPriorityGreaterThan(Integer value) {
             addCriterion("task_priority >", value, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityGreaterThanOrEqualTo(String value) {
+        public Criteria andTaskPriorityGreaterThanOrEqualTo(Integer value) {
             addCriterion("task_priority >=", value, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityLessThan(String value) {
+        public Criteria andTaskPriorityLessThan(Integer value) {
             addCriterion("task_priority <", value, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityLessThanOrEqualTo(String value) {
+        public Criteria andTaskPriorityLessThanOrEqualTo(Integer value) {
             addCriterion("task_priority <=", value, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityLike(String value) {
-            addCriterion("task_priority like", value, "taskPriority");
-            return (Criteria) this;
-        }
-
-        public Criteria andTaskPriorityNotLike(String value) {
-            addCriterion("task_priority not like", value, "taskPriority");
-            return (Criteria) this;
-        }
-
-        public Criteria andTaskPriorityIn(List<String> values) {
+        public Criteria andTaskPriorityIn(List<Integer> values) {
             addCriterion("task_priority in", values, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityNotIn(List<String> values) {
+        public Criteria andTaskPriorityNotIn(List<Integer> values) {
             addCriterion("task_priority not in", values, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityBetween(String value1, String value2) {
+        public Criteria andTaskPriorityBetween(Integer value1, Integer value2) {
             addCriterion("task_priority between", value1, value2, "taskPriority");
             return (Criteria) this;
         }
 
-        public Criteria andTaskPriorityNotBetween(String value1, String value2) {
+        public Criteria andTaskPriorityNotBetween(Integer value1, Integer value2) {
             addCriterion("task_priority not between", value1, value2, "taskPriority");
             return (Criteria) this;
         }

@@ -37,6 +37,7 @@ public class DesignController {
     }
 
     @PostMapping("task")
+    @ApiOperation(value = "设计-主页面新增", notes = "设计-主页面新增接口")
     public BaseResponse insert(@RequestBody BatchDesignTaskInsertRequestVO requestVO) {
         log.info("设计-主页面新增接口入参：{}", requestVO.toString());
         try {

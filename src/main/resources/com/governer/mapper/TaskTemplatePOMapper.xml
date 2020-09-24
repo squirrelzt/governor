@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.governer.mapper.TaskTemplatePOMapper">
   <resultMap id="BaseResultMap" type="com.governer.domain.po.TaskTemplatePO">
-    <id column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
     <result column="task_type_name" jdbcType="VARCHAR" property="taskTypeName" />
     <result column="task_type" jdbcType="VARCHAR" property="taskType" />
     <result column="task_param" jdbcType="VARCHAR" property="taskParam" />
@@ -16,7 +16,7 @@
     <result column="last_mod_stamp" jdbcType="OTHER" property="lastModStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
     <result column="timeout" jdbcType="BIGINT" property="timeout" />
     <result column="app_name" jdbcType="VARCHAR" property="appName" />
-    <result column="task_priority" jdbcType="VARCHAR" property="taskPriority" />
+    <result column="task_priority" jdbcType="INTEGER" property="taskPriority" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -270,7 +270,7 @@
         #{appName,jdbcType=VARCHAR},
       </if>
       <if test="taskPriority != null">
-        #{taskPriority,jdbcType=VARCHAR},
+        #{taskPriority,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -326,7 +326,7 @@
         app_name = #{record.appName,jdbcType=VARCHAR},
       </if>
       <if test="record.taskPriority != null">
-        task_priority = #{record.taskPriority,jdbcType=VARCHAR},
+        task_priority = #{record.taskPriority,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -349,58 +349,10 @@
       last_mod_stamp = #{record.lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
       timeout = #{record.timeout,jdbcType=BIGINT},
       app_name = #{record.appName,jdbcType=VARCHAR},
-      task_priority = #{record.taskPriority,jdbcType=VARCHAR}
+      task_priority = #{record.taskPriority,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.TaskTemplatePO">
-    update ds_task_template
-    <set>
-      <if test="taskTypeName != null">
-        task_type_name = #{taskTypeName,jdbcType=VARCHAR},
-      </if>
-      <if test="taskType != null">
-        task_type = #{taskType,jdbcType=VARCHAR},
-      </if>
-      <if test="taskParam != null">
-        task_param = #{taskParam,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="maxParallNum != null">
-        max_parall_num = #{maxParallNum,jdbcType=INTEGER},
-      </if>
-      <if test="dusList != null">
-        dus_list = #{dusList,jdbcType=VARCHAR},
-      </if>
-      <if test="serviceList != null">
-        service_list = #{serviceList,jdbcType=VARCHAR},
-      </if>
-      <if test="isRun != null">
-        is_run = #{isRun,jdbcType=INTEGER},
-      </if>
-      <if test="isRepeat != null">
-        is_repeat = #{isRepeat,jdbcType=INTEGER},
-      </if>
-      <if test="createStamp != null">
-        create_stamp = #{createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
-      </if>
-      <if test="lastModStamp != null">
-        last_mod_stamp = #{lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
-      </if>
-      <if test="timeout != null">
-        timeout = #{timeout,jdbcType=BIGINT},
-      </if>
-      <if test="appName != null">
-        app_name = #{appName,jdbcType=VARCHAR},
-      </if>
-      <if test="taskPriority != null">
-        task_priority = #{taskPriority,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where task_name = #{taskName,jdbcType=VARCHAR}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="com.governer.domain.po.TaskTemplatePOExample" resultMap="BaseResultMap">
     select

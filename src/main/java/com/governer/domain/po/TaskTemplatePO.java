@@ -32,7 +32,7 @@ public class TaskTemplatePO implements Serializable {
 
     private String appName;
 
-    private String taskPriority;
+    private Integer taskPriority;
 
     private static final long serialVersionUID = 1L;
 
@@ -218,17 +218,17 @@ public class TaskTemplatePO implements Serializable {
         this.appName = appName == null ? null : appName.trim();
     }
 
-    public String getTaskPriority() {
+    public Integer getTaskPriority() {
         return taskPriority;
     }
 
-    public TaskTemplatePO withTaskPriority(String taskPriority) {
+    public TaskTemplatePO withTaskPriority(Integer taskPriority) {
         this.setTaskPriority(taskPriority);
         return this;
     }
 
-    public void setTaskPriority(String taskPriority) {
-        this.taskPriority = taskPriority == null ? null : taskPriority.trim();
+    public void setTaskPriority(Integer taskPriority) {
+        this.taskPriority = taskPriority;
     }
 
     @Override
