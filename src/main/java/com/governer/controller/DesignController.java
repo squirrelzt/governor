@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("design")
+@RequestMapping("batch/design")
 @Api(value = "批量接口", produces = "批量接口服务")
 public class DesignController {
 
