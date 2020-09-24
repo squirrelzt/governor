@@ -74,4 +74,10 @@ public class BatchDesignTaskInsertRequestVO {
 
     @ApiModelProperty("事务提交间隔")
     private String transactions_submit_num;
+
+    @ApiModelProperty("依赖任务列表")
+    private String depend_task;
+
+    @ApiModelProperty("优先级")
+    private String task_priority;
 }

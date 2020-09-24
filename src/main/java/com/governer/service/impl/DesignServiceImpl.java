@@ -3,7 +3,6 @@ package com.governer.service.impl;
 import com.governer.common.BaseResponse;
 import com.governer.convert.TaskTemplateVOConvert;
 import com.governer.convert.batch.design.BatchDesignTaskInsertConvert;
-import com.governer.domain.dto.design.BatchDesignTaskInsertRequestDTO;
 import com.governer.domain.po.*;
 import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
 import com.governer.domain.vo.response.TaskTemplateVO;
@@ -54,10 +53,9 @@ public class DesignServiceImpl implements DesignService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public BaseResponse<Boolean> insert(BatchDesignTaskInsertRequestVO requestVO) throws Exception{
-        BatchDesignTaskInsertRequestDTO requestDTO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2DTO(requestVO);
         TaskTemplatePO taskTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2TaskTemplatePO(requestVO);
         int count = taskTemplatePOMapper.insert(taskTemplatePO);
-        String taskType = requestDTO.getTaskType();
+        String taskType = requestVO.getTask_type();
         if ("SIMPLE".equals(taskType)) {
             SimpleTaskTemplatePO simpleTaskTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2SimpleTaskTemplatePO(requestVO);
             int subCount1 = simpleTaskTemplatePOMapper.insert(simpleTaskTemplatePO);

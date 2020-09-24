@@ -1,6 +1,5 @@
 package com.governer.convert.batch.design;
 
-import com.governer.domain.dto.design.BatchDesignTaskInsertRequestDTO;
 import com.governer.domain.po.BatchJobTemplatePO;
 import com.governer.domain.po.FlowTemplateDetailPO;
 import com.governer.domain.po.SimpleTaskTemplatePO;
@@ -16,35 +15,11 @@ public interface BatchDesignTaskInsertConvert {
 
     BatchDesignTaskInsertConvert INSTANCE = Mappers.getMapper(BatchDesignTaskInsertConvert.class);
 
-    @Mappings({
-            @Mapping(source = "app_name", target = "appName"),
-            @Mapping(source = "create_stamp", target = "createStamp"),
-            @Mapping(source = "dus_list", target = "dusList"),
-            @Mapping(source = "file_template_name", target = "fileTemplateName"),
-            @Mapping(source = "flow_name", target = "flowName"),
-            @Mapping(source = "is_result", target = "isResult"),
-            @Mapping(source = "is_run", target = "isRun"),
-            @Mapping(source = "is_skip", target = "isSkip"),
-            @Mapping(source = "job_application_name", target = "jobApplicationName"),
-            @Mapping(source = "job_param", target = "jobParam"),
-            @Mapping(source = "last_mod_stamp", target = "lastModStamp"),
-            @Mapping(source = "max_parall_num", target = "maxParallNum"),
-            @Mapping(source = "remote_job_name", target = "remoteJobName"),
-            @Mapping(source = "retry_time", target = "retryTime"),
-            @Mapping(source = "service_list", target = "serviceList"),
-            @Mapping(source = "sort_no", target = "sortNo"),
-            @Mapping(source = "source_type", target = "sourceType"),
-            @Mapping(source = "task_param", target = "taskParam"),
-            @Mapping(source = "task_type", target = "taskType"),
-            @Mapping(source = "transactions_submit_num", target = "transactionsSubmitNum"),
-    })
-    BatchDesignTaskInsertRequestDTO convertInsertRequestVO2DTO(BatchDesignTaskInsertRequestVO requestVO);
-
     /**
      *
      * @param requestVO
      * @return
-     * BatchDesignTaskInsertRequestVO中没有TaskTemplatePO中的isRepeat，taskPriority
+     * BatchDesignTaskInsertRequestVO中没有TaskTemplatePO中的isRepeat
      */
     @Mappings({
             @Mapping(source = "flow_name", target = "taskName"),
@@ -60,6 +35,7 @@ public interface BatchDesignTaskInsertConvert {
             @Mapping(source = "last_mod_stamp", target = "lastModStamp"),
             @Mapping(source = "timeout", target = "timeout"),
             @Mapping(source = "app_name", target = "appName"),
+            @Mapping(source = "task_priority", target = "taskPriority"),
     })
     TaskTemplatePO convertInsertRequestVO2TaskTemplatePO(BatchDesignTaskInsertRequestVO requestVO);
 
@@ -108,7 +84,6 @@ public interface BatchDesignTaskInsertConvert {
      *
      * @param requestVO
      * @return
-     * 没有dependTask，
      */
     @Mappings({
             @Mapping(source = "flow_name", target = "flowName"),
@@ -123,7 +98,8 @@ public interface BatchDesignTaskInsertConvert {
             @Mapping(source = "retry_time", target = "retryTime"),
             @Mapping(source = "description", target = "description"),
             @Mapping(source = "create_stamp", target = "createStamp"),
-            @Mapping(source = "last_mod_stamp", target = "lastModStamp")
+            @Mapping(source = "last_mod_stamp", target = "lastModStamp"),
+            @Mapping(source = "depend_task", target = "dependTask")
     })
     FlowTemplateDetailPO convertInsertRequestVO2FlowTemplateDetailPO(BatchDesignTaskInsertRequestVO requestVO);
 }
