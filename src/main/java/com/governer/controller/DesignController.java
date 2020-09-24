@@ -2,6 +2,7 @@ package com.governer.controller;
 
 import com.governer.common.BaseResponse;
 import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
+import com.governer.domain.vo.response.FlowEditQueryResponseVO;
 import com.governer.domain.vo.response.TaskTemplateVO;
 import com.governer.service.DesignService;
 import io.swagger.annotations.Api;
@@ -42,6 +43,18 @@ public class DesignController {
         log.info("设计-主页面新增接口入参：{}", requestVO.toString());
         try {
             return designService.insert(requestVO);
+        }catch (Exception e) {
+            log.error("设计-主页面新增接口失败: ", e);
+            return BaseResponse.fail(e.toString());
+        }
+    }
+
+    @GetMapping("task/flowEdit")
+    @ApiOperation(value = "设计-主页面-流程任务查询", notes = "设计-主页面-流程任务查询接口")
+    public BaseResponse<FlowEditQueryResponseVO> flowEditQuery(@RequestParam String task_name) {
+        log.info("设计-主页面-流程任务查询接口入参：task_name={}", task_name);
+        try {
+            return designService.flowEditQuery(task_name);
         }catch (Exception e) {
             log.error("设计-主页面新增接口失败: ", e);
             return BaseResponse.fail(e.toString());

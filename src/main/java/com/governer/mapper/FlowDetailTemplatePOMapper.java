@@ -1,7 +1,7 @@
 package com.governer.mapper;
 
-import com.governer.domain.po.FlowTemplateDetailPO;
-import com.governer.domain.po.FlowTemplateDetailPOExample;
+import com.governer.domain.po.FlowDetailTemplatePO;
+import com.governer.domain.po.FlowDetailTemplatePOExample;
 import java.util.List;
 
 import org.apache.ibatis.annotations.*;
@@ -10,19 +10,19 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface FlowTemplateDetailPOMapper {
-    long countByExample(FlowTemplateDetailPOExample example);
+public interface FlowDetailTemplatePOMapper {
+    long countByExample(FlowDetailTemplatePOExample example);
 
-    int deleteByExample(FlowTemplateDetailPOExample example);
+    int deleteByExample(FlowDetailTemplatePOExample example);
 
     @Delete({
-        "delete from ds_flow_template_detail",
+        "delete from ds_flow_detail_template",
         "where flow_name = #{flowName,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(String flowName);
 
     @Insert({
-        "insert into ds_flow_template_detail (flow_name, sort_no, ",
+        "insert into ds_flow_detail_template (flow_name, sort_no, ",
         "depend_task, task_name, ",
         "task_type_name, is_run, ",
         "is_skip, dus_list, ",
@@ -39,33 +39,33 @@ public interface FlowTemplateDetailPOMapper {
         "#{lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}, ",
         "#{createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler})"
     })
-    int insert(FlowTemplateDetailPO record);
+    int insert(FlowDetailTemplatePO record);
 
-    int insertSelective(FlowTemplateDetailPO record);
+    int insertSelective(FlowDetailTemplatePO record);
 
-    List<FlowTemplateDetailPO> selectByExampleWithRowbounds(FlowTemplateDetailPOExample example, RowBounds rowBounds);
+    List<FlowDetailTemplatePO> selectByExampleWithRowbounds(FlowDetailTemplatePOExample example, RowBounds rowBounds);
 
-    List<FlowTemplateDetailPO> selectByExample(FlowTemplateDetailPOExample example);
+    List<FlowDetailTemplatePO> selectByExample(FlowDetailTemplatePOExample example);
 
     @Select({
         "select",
         "flow_name, sort_no, depend_task, task_name, task_type_name, is_run, is_skip, ",
         "dus_list, service_list, task_type, retry_time, description, last_mod_stamp, ",
         "create_stamp",
-        "from ds_flow_template_detail",
+        "from ds_flow_detail_template",
         "where flow_name = #{flowName,jdbcType=VARCHAR}"
     })
-    @ResultMap("com.governer.mapper.FlowTemplateDetailPOMapper.BaseResultMap")
-    FlowTemplateDetailPO selectByPrimaryKey(String flowName);
+    @ResultMap("com.governer.mapper.FlowDetailTemplatePOMapper.BaseResultMap")
+    FlowDetailTemplatePO selectByPrimaryKey(String flowName);
 
-    int updateByExampleSelective(@Param("record") FlowTemplateDetailPO record, @Param("example") FlowTemplateDetailPOExample example);
+    int updateByExampleSelective(@Param("record") FlowDetailTemplatePO record, @Param("example") FlowDetailTemplatePOExample example);
 
-    int updateByExample(@Param("record") FlowTemplateDetailPO record, @Param("example") FlowTemplateDetailPOExample example);
+    int updateByExample(@Param("record") FlowDetailTemplatePO record, @Param("example") FlowDetailTemplatePOExample example);
 
-    int updateByPrimaryKeySelective(FlowTemplateDetailPO record);
+    int updateByPrimaryKeySelective(FlowDetailTemplatePO record);
 
     @Update({
-        "update ds_flow_template_detail",
+        "update ds_flow_detail_template",
         "set sort_no = #{sortNo,jdbcType=SMALLINT},",
           "depend_task = #{dependTask,jdbcType=VARCHAR},",
           "task_name = #{taskName,jdbcType=VARCHAR},",
@@ -81,5 +81,5 @@ public interface FlowTemplateDetailPOMapper {
           "create_stamp = #{createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}",
         "where flow_name = #{flowName,jdbcType=VARCHAR}"
     })
-    int updateByPrimaryKey(FlowTemplateDetailPO record);
+    int updateByPrimaryKey(FlowDetailTemplatePO record);
 }

@@ -1,10 +1,12 @@
 package com.governer.service.impl;
 
 import com.governer.common.BaseResponse;
+import com.governer.convert.DesignFlowEditQueryConvert;
 import com.governer.convert.TaskTemplateVOConvert;
 import com.governer.convert.batch.design.BatchDesignTaskInsertConvert;
 import com.governer.domain.po.*;
 import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
+import com.governer.domain.vo.response.FlowEditQueryResponseVO;
 import com.governer.domain.vo.response.TaskTemplateVO;
 import com.governer.mapper.*;
 import com.governer.service.DesignService;
@@ -79,5 +81,20 @@ public class DesignServiceImpl implements DesignService {
             }
         }
         return BaseResponse.fail("设计-新增主页面失败");
+    }
+
+    @Override
+    public BaseResponse<FlowEditQueryResponseVO> flowEditQuery(String taskName) {
+        FlowDetailTemplatePOExample example = new FlowDetailTemplatePOExample();
+        FlowDetailTemplatePOExample.Criteria criteria = example.createCriteria();
+        criteria.andTaskNameEqualTo(taskName);
+        List<FlowDetailTemplatePO> list = flowDetailTemplatePOMapper.selectByExample(example);
+        if (list.size() > 0) {
+            FlowDetailTemplatePO po = list.get(0);
+            FlowEditQueryResponseVO responseVO = DesignFlowEditQueryConvert.INSTANCE.convertFlowDetailTemplatePO(po);
+            return BaseResponse.ok(responseVO);
+        } else {
+            return BaseResponse.ok(null);
+        }
     }
 }
