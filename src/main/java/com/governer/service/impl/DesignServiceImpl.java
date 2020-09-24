@@ -2,10 +2,12 @@ package com.governer.service.impl;
 
 import com.governer.common.BaseResponse;
 import com.governer.convert.DesignFlowEditQueryConvert;
+import com.governer.convert.DesignFlowEditUpdateConvert;
 import com.governer.convert.TaskTemplateVOConvert;
 import com.governer.convert.batch.design.BatchDesignTaskInsertConvert;
 import com.governer.domain.po.*;
 import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
+import com.governer.domain.vo.request.FlowEditUpdateRequestVO;
 import com.governer.domain.vo.response.FlowEditQueryResponseVO;
 import com.governer.domain.vo.response.TaskTemplateVO;
 import com.governer.mapper.*;
@@ -95,6 +97,21 @@ public class DesignServiceImpl implements DesignService {
             return BaseResponse.ok(responseVO);
         } else {
             return BaseResponse.ok(null);
+        }
+    }
+
+    @Override
+    public BaseResponse<Boolean> flowEdit(FlowEditUpdateRequestVO requestVO) {
+        FlowDetailTemplatePO po = DesignFlowEditUpdateConvert.INSTANCE.convertFlowEditUpdateRequestVO(requestVO);
+        FlowDetailTemplatePOExample example = new FlowDetailTemplatePOExample();
+        FlowDetailTemplatePOExample.Criteria criteria = example.createCriteria();
+        criteria.andTaskNameEqualTo(po.getTaskName());
+        criteria.andTaskTypeEqualTo(po.getTaskType());
+        int count = flowDetailTemplatePOMapper.updateByExample(po, example);
+        if (1 == count) {
+            return BaseResponse.ok(Boolean.TRUE);
+        } else {
+            return BaseResponse.fail("设计-主页面-流程任务修改失败");
         }
     }
 }
