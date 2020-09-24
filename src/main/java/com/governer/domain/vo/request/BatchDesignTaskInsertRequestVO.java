@@ -64,7 +64,7 @@ public class BatchDesignTaskInsertRequestVO {
     private String source_type;
 
     @ApiModelProperty("任务参数")
-    private String task_parm;
+    private String task_param;
 
     @ApiModelProperty("任务类型")
     private String task_type;

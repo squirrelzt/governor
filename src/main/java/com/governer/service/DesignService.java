@@ -9,5 +9,5 @@ import java.util.List;
 public interface DesignService {
     BaseResponse<List<TaskTemplateVO>> task(String taskName, String taskType, String description);
 
-    BaseResponse<Boolean> insert(BatchDesignTaskInsertRequestVO requestVO);
+    BaseResponse<Boolean> insert(BatchDesignTaskInsertRequestVO requestVO) throws Exception;
 }

@@ -26,7 +26,6 @@ public interface TaskTemplateVOConvert {
             @Mapping(source = "createStamp", target = "create_stamp"),
             @Mapping(source = "lastModStamp", target = "last_mod_stamp"),
             @Mapping(source = "appName", target = "app_name"),
-            @Mapping(source = "taskPriority", target = "task_priority")
     })
     TaskTemplateVO convertTaskTemplatePO(TaskTemplatePO po);
 

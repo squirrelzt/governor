@@ -8,12 +8,12 @@
     <result column="remote_job_name" jdbcType="VARCHAR" property="remoteJobName" />
     <result column="file_template_name" jdbcType="VARCHAR" property="fileTemplateName" />
     <result column="sharding_rule" jdbcType="VARCHAR" property="shardingRule" />
-    <result column="transactios_submit_num" jdbcType="BIGINT" property="transactiosSubmitNum" />
+    <result column="transactions_submit_num" jdbcType="BIGINT" property="transactionsSubmitNum" />
     <result column="max_parall_num" jdbcType="SMALLINT" property="maxParallNum" />
     <result column="is_skip" jdbcType="SMALLINT" property="isSkip" />
     <result column="is_repeat" jdbcType="SMALLINT" property="isRepeat" />
     <result column="is_result" jdbcType="SMALLINT" property="isResult" />
-    <result column="retry_times" jdbcType="BIGINT" property="retryTimes" />
+    <result column="retry_time" jdbcType="BIGINT" property="retryTime" />
     <result column="job_param" jdbcType="VARCHAR" property="jobParam" />
     <result column="create_stamp" jdbcType="OTHER" property="createStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
     <result column="last_mod_stamp" jdbcType="OTHER" property="lastModStamp" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
@@ -154,8 +154,8 @@
   </sql>
   <sql id="Base_Column_List">
     job_name, job_application_name, source_type, remote_job_name, file_template_name, 
-    sharding_rule, transactios_submit_num, max_parall_num, is_skip, is_repeat, is_result, 
-    retry_times, job_param, create_stamp, last_mod_stamp
+    sharding_rule, transactions_submit_num, max_parall_num, is_skip, is_repeat, is_result, 
+    retry_time, job_param, create_stamp, last_mod_stamp
   </sql>
   <select id="selectByExample" parameterType="com.governer.domain.po.BatchJobTemplatePOExample" resultMap="BaseResultMap">
     select
@@ -198,8 +198,8 @@
       <if test="shardingRule != null">
         sharding_rule,
       </if>
-      <if test="transactiosSubmitNum != null">
-        transactios_submit_num,
+      <if test="transactionsSubmitNum != null">
+        transactions_submit_num,
       </if>
       <if test="maxParallNum != null">
         max_parall_num,
@@ -213,8 +213,8 @@
       <if test="isResult != null">
         is_result,
       </if>
-      <if test="retryTimes != null">
-        retry_times,
+      <if test="retryTime != null">
+        retry_time,
       </if>
       <if test="jobParam != null">
         job_param,
@@ -245,8 +245,8 @@
       <if test="shardingRule != null">
         #{shardingRule,jdbcType=VARCHAR},
       </if>
-      <if test="transactiosSubmitNum != null">
-        #{transactiosSubmitNum,jdbcType=BIGINT},
+      <if test="transactionsSubmitNum != null">
+        #{transactionsSubmitNum,jdbcType=BIGINT},
       </if>
       <if test="maxParallNum != null">
         #{maxParallNum,jdbcType=SMALLINT},
@@ -260,8 +260,8 @@
       <if test="isResult != null">
         #{isResult,jdbcType=SMALLINT},
       </if>
-      <if test="retryTimes != null">
-        #{retryTimes,jdbcType=BIGINT},
+      <if test="retryTime != null">
+        #{retryTime,jdbcType=BIGINT},
       </if>
       <if test="jobParam != null">
         #{jobParam,jdbcType=VARCHAR},
@@ -301,8 +301,8 @@
       <if test="record.shardingRule != null">
         sharding_rule = #{record.shardingRule,jdbcType=VARCHAR},
       </if>
-      <if test="record.transactiosSubmitNum != null">
-        transactios_submit_num = #{record.transactiosSubmitNum,jdbcType=BIGINT},
+      <if test="record.transactionsSubmitNum != null">
+        transactions_submit_num = #{record.transactionsSubmitNum,jdbcType=BIGINT},
       </if>
       <if test="record.maxParallNum != null">
         max_parall_num = #{record.maxParallNum,jdbcType=SMALLINT},
@@ -316,8 +316,8 @@
       <if test="record.isResult != null">
         is_result = #{record.isResult,jdbcType=SMALLINT},
       </if>
-      <if test="record.retryTimes != null">
-        retry_times = #{record.retryTimes,jdbcType=BIGINT},
+      <if test="record.retryTime != null">
+        retry_time = #{record.retryTime,jdbcType=BIGINT},
       </if>
       <if test="record.jobParam != null">
         job_param = #{record.jobParam,jdbcType=VARCHAR},
@@ -341,12 +341,12 @@
       remote_job_name = #{record.remoteJobName,jdbcType=VARCHAR},
       file_template_name = #{record.fileTemplateName,jdbcType=VARCHAR},
       sharding_rule = #{record.shardingRule,jdbcType=VARCHAR},
-      transactios_submit_num = #{record.transactiosSubmitNum,jdbcType=BIGINT},
+      transactions_submit_num = #{record.transactionsSubmitNum,jdbcType=BIGINT},
       max_parall_num = #{record.maxParallNum,jdbcType=SMALLINT},
       is_skip = #{record.isSkip,jdbcType=SMALLINT},
       is_repeat = #{record.isRepeat,jdbcType=SMALLINT},
       is_result = #{record.isResult,jdbcType=SMALLINT},
-      retry_times = #{record.retryTimes,jdbcType=BIGINT},
+      retry_time = #{record.retryTime,jdbcType=BIGINT},
       job_param = #{record.jobParam,jdbcType=VARCHAR},
       create_stamp = #{record.createStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler},
       last_mod_stamp = #{record.lastModStamp,jdbcType=OTHER,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler}
@@ -372,8 +372,8 @@
       <if test="shardingRule != null">
         sharding_rule = #{shardingRule,jdbcType=VARCHAR},
       </if>
-      <if test="transactiosSubmitNum != null">
-        transactios_submit_num = #{transactiosSubmitNum,jdbcType=BIGINT},
+      <if test="transactionsSubmitNum != null">
+        transactions_submit_num = #{transactionsSubmitNum,jdbcType=BIGINT},
       </if>
       <if test="maxParallNum != null">
         max_parall_num = #{maxParallNum,jdbcType=SMALLINT},
@@ -387,8 +387,8 @@
       <if test="isResult != null">
         is_result = #{isResult,jdbcType=SMALLINT},
       </if>
-      <if test="retryTimes != null">
-        retry_times = #{retryTimes,jdbcType=BIGINT},
+      <if test="retryTime != null">
+        retry_time = #{retryTime,jdbcType=BIGINT},
       </if>
       <if test="jobParam != null">
         job_param = #{jobParam,jdbcType=VARCHAR},

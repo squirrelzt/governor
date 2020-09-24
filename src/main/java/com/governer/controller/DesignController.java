@@ -28,12 +28,22 @@ public class DesignController {
                                                    @RequestParam(value = "task_type", required = false) @ApiParam("任务类型")String task_type,
                                                    @RequestParam(value = "description", required = false) @ApiParam("任务描述")String description) {
         log.info("设计-查询接口入参: task_name={},task_type={},description={}", task_name, task_type, description);
-        return designService.task(task_name, task_type, description);
+        try {
+            return designService.task(task_name, task_type, description);
+        }catch (Exception e) {
+            log.error("设计-查询接口失败: ", e);
+            return BaseResponse.fail(e.toString());
+        }
     }
 
     @PostMapping("task")
     public BaseResponse insert(@RequestBody BatchDesignTaskInsertRequestVO requestVO) {
         log.info("设计-主页面新增接口入参：{}", requestVO.toString());
-        return null;
+        try {
+            return designService.insert(requestVO);
+        }catch (Exception e) {
+            log.error("设计-主页面新增接口失败: ", e);
+            return BaseResponse.fail(e.toString());
+        }
     }
 }

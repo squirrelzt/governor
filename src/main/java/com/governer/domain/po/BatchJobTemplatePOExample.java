@@ -584,63 +584,63 @@ public class BatchJobTemplatePOExample {
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumIsNull() {
-            addCriterion("transactios_submit_num is null");
+        public Criteria andTransactionsSubmitNumIsNull() {
+            addCriterion("transactions_submit_num is null");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumIsNotNull() {
-            addCriterion("transactios_submit_num is not null");
+        public Criteria andTransactionsSubmitNumIsNotNull() {
+            addCriterion("transactions_submit_num is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumEqualTo(Long value) {
-            addCriterion("transactios_submit_num =", value, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumEqualTo(Long value) {
+            addCriterion("transactions_submit_num =", value, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumNotEqualTo(Long value) {
-            addCriterion("transactios_submit_num <>", value, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumNotEqualTo(Long value) {
+            addCriterion("transactions_submit_num <>", value, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumGreaterThan(Long value) {
-            addCriterion("transactios_submit_num >", value, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumGreaterThan(Long value) {
+            addCriterion("transactions_submit_num >", value, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumGreaterThanOrEqualTo(Long value) {
-            addCriterion("transactios_submit_num >=", value, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumGreaterThanOrEqualTo(Long value) {
+            addCriterion("transactions_submit_num >=", value, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumLessThan(Long value) {
-            addCriterion("transactios_submit_num <", value, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumLessThan(Long value) {
+            addCriterion("transactions_submit_num <", value, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumLessThanOrEqualTo(Long value) {
-            addCriterion("transactios_submit_num <=", value, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumLessThanOrEqualTo(Long value) {
+            addCriterion("transactions_submit_num <=", value, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumIn(List<Long> values) {
-            addCriterion("transactios_submit_num in", values, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumIn(List<Long> values) {
+            addCriterion("transactions_submit_num in", values, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumNotIn(List<Long> values) {
-            addCriterion("transactios_submit_num not in", values, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumNotIn(List<Long> values) {
+            addCriterion("transactions_submit_num not in", values, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumBetween(Long value1, Long value2) {
-            addCriterion("transactios_submit_num between", value1, value2, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumBetween(Long value1, Long value2) {
+            addCriterion("transactions_submit_num between", value1, value2, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
-        public Criteria andTransactiosSubmitNumNotBetween(Long value1, Long value2) {
-            addCriterion("transactios_submit_num not between", value1, value2, "transactiosSubmitNum");
+        public Criteria andTransactionsSubmitNumNotBetween(Long value1, Long value2) {
+            addCriterion("transactions_submit_num not between", value1, value2, "transactionsSubmitNum");
             return (Criteria) this;
         }
 
@@ -884,63 +884,63 @@ public class BatchJobTemplatePOExample {
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesIsNull() {
-            addCriterion("retry_times is null");
+        public Criteria andRetryTimeIsNull() {
+            addCriterion("retry_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesIsNotNull() {
-            addCriterion("retry_times is not null");
+        public Criteria andRetryTimeIsNotNull() {
+            addCriterion("retry_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesEqualTo(Long value) {
-            addCriterion("retry_times =", value, "retryTimes");
+        public Criteria andRetryTimeEqualTo(Long value) {
+            addCriterion("retry_time =", value, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesNotEqualTo(Long value) {
-            addCriterion("retry_times <>", value, "retryTimes");
+        public Criteria andRetryTimeNotEqualTo(Long value) {
+            addCriterion("retry_time <>", value, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesGreaterThan(Long value) {
-            addCriterion("retry_times >", value, "retryTimes");
+        public Criteria andRetryTimeGreaterThan(Long value) {
+            addCriterion("retry_time >", value, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesGreaterThanOrEqualTo(Long value) {
-            addCriterion("retry_times >=", value, "retryTimes");
+        public Criteria andRetryTimeGreaterThanOrEqualTo(Long value) {
+            addCriterion("retry_time >=", value, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesLessThan(Long value) {
-            addCriterion("retry_times <", value, "retryTimes");
+        public Criteria andRetryTimeLessThan(Long value) {
+            addCriterion("retry_time <", value, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesLessThanOrEqualTo(Long value) {
-            addCriterion("retry_times <=", value, "retryTimes");
+        public Criteria andRetryTimeLessThanOrEqualTo(Long value) {
+            addCriterion("retry_time <=", value, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesIn(List<Long> values) {
-            addCriterion("retry_times in", values, "retryTimes");
+        public Criteria andRetryTimeIn(List<Long> values) {
+            addCriterion("retry_time in", values, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesNotIn(List<Long> values) {
-            addCriterion("retry_times not in", values, "retryTimes");
+        public Criteria andRetryTimeNotIn(List<Long> values) {
+            addCriterion("retry_time not in", values, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesBetween(Long value1, Long value2) {
-            addCriterion("retry_times between", value1, value2, "retryTimes");
+        public Criteria andRetryTimeBetween(Long value1, Long value2) {
+            addCriterion("retry_time between", value1, value2, "retryTime");
             return (Criteria) this;
         }
 
-        public Criteria andRetryTimesNotBetween(Long value1, Long value2) {
-            addCriterion("retry_times not between", value1, value2, "retryTimes");
+        public Criteria andRetryTimeNotBetween(Long value1, Long value2) {
+            addCriterion("retry_time not between", value1, value2, "retryTime");
             return (Criteria) this;
         }
 

@@ -16,7 +16,7 @@ public class BatchJobTemplatePO implements Serializable {
 
     private String shardingRule;
 
-    private Long transactiosSubmitNum;
+    private Long transactionsSubmitNum;
 
     private Short maxParallNum;
 
@@ -26,7 +26,7 @@ public class BatchJobTemplatePO implements Serializable {
 
     private Short isResult;
 
-    private Long retryTimes;
+    private Long retryTime;
 
     private String jobParam;
 
@@ -114,17 +114,17 @@ public class BatchJobTemplatePO implements Serializable {
         this.shardingRule = shardingRule == null ? null : shardingRule.trim();
     }
 
-    public Long getTransactiosSubmitNum() {
-        return transactiosSubmitNum;
+    public Long getTransactionsSubmitNum() {
+        return transactionsSubmitNum;
     }
 
-    public BatchJobTemplatePO withTransactiosSubmitNum(Long transactiosSubmitNum) {
-        this.setTransactiosSubmitNum(transactiosSubmitNum);
+    public BatchJobTemplatePO withTransactionsSubmitNum(Long transactionsSubmitNum) {
+        this.setTransactionsSubmitNum(transactionsSubmitNum);
         return this;
     }
 
-    public void setTransactiosSubmitNum(Long transactiosSubmitNum) {
-        this.transactiosSubmitNum = transactiosSubmitNum;
+    public void setTransactionsSubmitNum(Long transactionsSubmitNum) {
+        this.transactionsSubmitNum = transactionsSubmitNum;
     }
 
     public Short getMaxParallNum() {
@@ -179,17 +179,17 @@ public class BatchJobTemplatePO implements Serializable {
         this.isResult = isResult;
     }
 
-    public Long getRetryTimes() {
-        return retryTimes;
+    public Long getRetryTime() {
+        return retryTime;
     }
 
-    public BatchJobTemplatePO withRetryTimes(Long retryTimes) {
-        this.setRetryTimes(retryTimes);
+    public BatchJobTemplatePO withRetryTime(Long retryTime) {
+        this.setRetryTime(retryTime);
         return this;
     }
 
-    public void setRetryTimes(Long retryTimes) {
-        this.retryTimes = retryTimes;
+    public void setRetryTime(Long retryTime) {
+        this.retryTime = retryTime;
     }
 
     public String getJobParam() {
@@ -243,12 +243,12 @@ public class BatchJobTemplatePO implements Serializable {
         sb.append(", remoteJobName=").append(remoteJobName);
         sb.append(", fileTemplateName=").append(fileTemplateName);
         sb.append(", shardingRule=").append(shardingRule);
-        sb.append(", transactiosSubmitNum=").append(transactiosSubmitNum);
+        sb.append(", transactionsSubmitNum=").append(transactionsSubmitNum);
         sb.append(", maxParallNum=").append(maxParallNum);
         sb.append(", isSkip=").append(isSkip);
         sb.append(", isRepeat=").append(isRepeat);
         sb.append(", isResult=").append(isResult);
-        sb.append(", retryTimes=").append(retryTimes);
+        sb.append(", retryTime=").append(retryTime);
         sb.append(", jobParam=").append(jobParam);
         sb.append(", createStamp=").append(createStamp);
         sb.append(", lastModStamp=").append(lastModStamp);
