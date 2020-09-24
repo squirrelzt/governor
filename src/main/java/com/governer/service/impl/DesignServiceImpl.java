@@ -4,6 +4,7 @@ import com.governer.common.BaseResponse;
 import com.governer.convert.TaskTemplateVOConvert;
 import com.governer.domain.po.TaskTemplatePO;
 import com.governer.domain.po.TaskTemplatePOExample;
+import com.governer.domain.vo.request.BatchDesignTaskInsertRequestVO;
 import com.governer.domain.vo.response.TaskTemplateVO;
 import com.governer.mapper.TaskTemplatePOMapper;
 import com.governer.service.DesignService;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @Service
@@ -38,5 +38,10 @@ public class DesignServiceImpl implements DesignService {
         List<TaskTemplatePO> poList = taskTemplatePOMapper.selectByExample(example);
         List<TaskTemplateVO> list = TaskTemplateVOConvert.INSTANCE.convertTaskTemplatePOList(poList);
         return BaseResponse.ok(list);
+    }
+
+    @Override
+    public BaseResponse<Boolean> insert(BatchDesignTaskInsertRequestVO requestVO) {
+        return null;
     }
 }
