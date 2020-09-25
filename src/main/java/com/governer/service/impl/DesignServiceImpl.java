@@ -33,6 +33,8 @@ public class DesignServiceImpl implements DesignService {
     BatchJobTemplatePOMapper batchJobTemplatePOMapper;
     @Autowired
     FlowDetailTemplatePOMapper flowDetailTemplatePOMapper;
+    @Autowired
+    FlowTypeTemplatePOMapper flowTypeTemplatePOMapper;
 
     @Override
     public BaseResponse<List<TaskTemplateVO>> task(String taskName, String taskType, String description) {
@@ -76,7 +78,9 @@ public class DesignServiceImpl implements DesignService {
             FlowDetailTemplatePO flowDetailTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2FlowTemplateDetailPO(requestVO);
             flowDetailTemplatePO.setCreateStamp(LocalDateTime.now());
             int subCount1 = flowDetailTemplatePOMapper.insert(flowDetailTemplatePO);
-            if (1 == count && 1 == subCount1) {
+            FlowTypeTemplatePO flowTypeTemplatePO = BatchDesignTaskInsertConvert.INSTANCE.convertInsertRequestVO2FlowTypeTemplatePO(requestVO);
+            int subCount2 = flowTypeTemplatePOMapper.insert(flowTypeTemplatePO);
+            if (1 == count && 1 == subCount1 && 1 == subCount2) {
                 return BaseResponse.ok(Boolean.TRUE);
             } else {
                 throw new Exception("设计-新增主页面失败");

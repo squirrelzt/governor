@@ -99,4 +99,15 @@ public interface BatchDesignTaskInsertConvert {
             @Mapping(source = "depend_task", target = "dependTask")
     })
     FlowDetailTemplatePO convertInsertRequestVO2FlowTemplateDetailPO(BatchDesignTaskInsertRequestVO requestVO);
+
+    @Mappings({
+            @Mapping(source = "flow_name", target = "flowName"),
+            @Mapping(source = "flow_name", target = "taskTypeName"),
+            @Mapping(source = "max_parall_num", target = "maxParallNum"),
+            @Mapping(source = "dus_list", target = "dusList"),
+            @Mapping(source = "service_list", target = "serviceList"),
+            @Mapping(source = "create_stamp", target = "createStamp"),
+            @Mapping(source = "last_mod_stamp", target = "lastModStamp"),
+    })
+    FlowTypeTemplatePO convertInsertRequestVO2FlowTypeTemplatePO(BatchDesignTaskInsertRequestVO requestVO);
 }
