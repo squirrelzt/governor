@@ -1,6 +1,7 @@
 package com.governer.common;
 
 import com.governer.enums.ResponseCodeEnums;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class BaseResponse<T> extends PageParam {
     private PageParam pageParam;
 
     public static <T> BaseResponse<T> ok(T t) {
-        return new BaseResponse<T>(ResponseCodeEnums.SUCCESS.getCode(), t, ResponseCodeEnums.SUCCESS.getMessage(), new PageParam());
+    	return new BaseResponse<T>(ResponseCodeEnums.SUCCESS.getCode(), t, ResponseCodeEnums.SUCCESS.getMessage(), new PageParam());
     }
 
     public static <T> BaseResponse<T> fail(String msg) {

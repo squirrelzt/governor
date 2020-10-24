@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.governer.mapper.UserPOMapper" >
+  <resultMap id="BaseResultMap" type="com.governer.domain.po.UserPO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_CODE" property="employeeCode" jdbcType="VARCHAR" />
+    <result column="PAGESIZE" property="pageSize" jdbcType="INTEGER" />
+    <result column="MENU_TYPE" property="menuType" jdbcType="VARCHAR" />
+    <result column="SKIN_CODE" property="skinCode" jdbcType="VARCHAR" />
+    <result column="LAST_ROLE" property="lastRole" jdbcType="VARCHAR" />
+    <result column="DEFAULT_ROLE" property="defaultRole" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ENABLE" property="enable" jdbcType="VARCHAR" />
+    <result column="EFFECTIVE_DATE_START" property="effectiveDateStart" jdbcType="TIMESTAMP" />
+    <result column="EFFECTIVE_DATE_END" property="effectiveDateEnd" jdbcType="TIMESTAMP" />
+    <result column="FAILED_COUNT" property="failedCount" jdbcType="INTEGER" />
+    <result column="DEFAULT_DASHBOARD" property="defaultDashboard" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_PWD_DATE" property="lastUpdatePwdDate" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_BY" property="lastUpdateBy" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_CODE, USER_NAME, USER_PASSWORD, ORG_CODE, EMPLOYEE_CODE, PAGESIZE, MENU_TYPE, SKIN_CODE, LAST_ROLE, DEFAULT_ROLE, 
+    STATUS, ENABLE, EFFECTIVE_DATE_START, EFFECTIVE_DATE_END, FAILED_COUNT, DEFAULT_DASHBOARD, LAST_UPDATE_PWD_DATE, DESCRIPTION, 
+    CREATE_BY, CREATE_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bap_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bap_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.governer.domain.po.UserPO" >
+    insert into bap_user (ID, USER_CODE, USER_NAME, USER_PASSWORD, ORG_CODE, 
+      EMPLOYEE_CODE, PAGESIZE, MENU_TYPE, SKIN_CODE, LAST_ROLE, DEFAULT_ROLE, STATUS, ENABLE EFFECTIVE_DATE_START, 
+      EFFECTIVE_DATE_END, FAILED_COUNT, DEFAULT_DASHBOARD, LAST_UPDATE_PWD_DATE, DESCRIPTION, CREATE_BY, 
+      CREATE_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
+      #{employeeCode,jdbcType=VARCHAR}, #{pageSize,jdbcType=INTEGER}, #{menuType,jdbcType=VARCHAR}, #{skinCode,jdbcType=VARCHAR}, 
+      #{lastRole,jdbcType=VARCHAR}, #{defaultRole,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{enable,jdbcType=VARCHAR}, 
+      #{effectiveDateStart,jdbcType=TIMESTAMP}, #{effectiveDateEnd,jdbcType=TIMESTAMP}, #{failedCount,jdbcType=INTEGER}, #{defaultDashboard,jdbcType=VARCHAR}, 
+      #{lastUpdatePwdDate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.governer.domain.po.UserPO" >
+    insert into bap_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        USER_CODE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userName)" >
+        USER_NAME,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userPassword)" >
+        USER_PASSWORD,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(orgCode)" >
+        ORG_CODE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(employeeCode)" >
+        EMPLOYEE_CODE,
+      </if>
+      <if test="pageSize != null" >
+        PAGESIZE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(menuType)" >
+        MENU_TYPE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(skinCode)" >
+        SKIN_CODE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastRole)" >
+        LAST_ROLE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(defaultRole)" >
+        DEFAULT_ROLE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(status)" >
+        STATUS,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        ENABLE,
+      </if>
+      <if test="effectiveDateStart != null" >
+        EFFECTIVE_DATE_START,
+      </if>
+      <if test="effectiveDateEnd != null" >
+        EFFECTIVE_DATE_END,
+      </if>
+      <if test="failedCount != null" >
+        FAILED_COUNT,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(defaultDashboard)" >
+        DEFAULT_DASHBOARD,
+      </if>
+      <if test="lastUpdatePwdDate != null" >
+        LAST_UPDATE_PWD_DATE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        DESCRIPTION,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        LAST_UPDATE_BY,
+      </if>
+      <if test="lastUpdateDate != null" >
+        LAST_UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userName)" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userPassword)" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(orgCode)" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(employeeCode)" >
+        #{employeeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pageSize != null" >
+        #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(menuType)" >
+        #{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(skinCode)" >
+        #{skinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastRole)" >
+        #{lastRole,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(defaultRole)" >
+        #{defaultRole,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(status)" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDateStart != null" >
+        #{effectiveDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveDateEnd != null" >
+        #{effectiveDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failedCount != null" >
+        #{failedCount,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(defaultDashboard)" >
+        #{defaultDashboard,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatePwdDate != null" >
+        #{lastUpdatePwdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.UserPO" >
+    update bap_user
+    <set >
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userName)" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userPassword)" >
+        USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(orgCode)" >
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(employeeCode)" >
+        EMPLOYEE_CODE = #{employeeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pageSize != null" >
+        PAGESIZE = #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(menuType)" >
+        MENU_TYPE = #{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(skinCode)" >
+        SKIN_CODE = #{skinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastRole)" >
+        LAST_ROLE = #{lastRole,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(defaultRole)" >
+        DEFAULT_ROLE = #{defaultRole,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(status)" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        ENABLE = #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDateStart != null" >
+        EFFECTIVE_DATE_START = #{effectiveDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveDateEnd != null" >
+        EFFECTIVE_DATE_END = #{effectiveDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failedCount != null" >
+        FAILED_COUNT = #{failedCount,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(defaultDashboard)" >
+        DEFAULT_DASHBOARD = #{defaultDashboard,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatePwdDate != null" >
+        LAST_UPDATE_PWD_DATE = #{lastUpdatePwdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null" >
+        LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.governer.domain.po.UserPO" >
+    update bap_user
+    set USER_CODE = #{userCode,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      EMPLOYEE_CODE = #{employeeCode,jdbcType=VARCHAR},
+      PAGESIZE = #{pageSize,jdbcType=INTEGER}, 
+      MENU_TYPE = #{menuType,jdbcType=VARCHAR}, 
+      SKIN_CODE = #{skinCode,jdbcType=VARCHAR}, 
+      LAST_ROLE = #{lastRole,jdbcType=VARCHAR}, 
+      DEFAULT_ROLE = #{defaultRole,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ENABLE = #{enable,jdbcType=VARCHAR},
+      EFFECTIVE_DATE_START = #{effectiveDateStart,jdbcType=TIMESTAMP},
+      EFFECTIVE_DATE_END = #{effectiveDateEnd,jdbcType=TIMESTAMP},
+      FAILED_COUNT = #{failedCount,jdbcType=INTEGER},
+      DEFAULT_DASHBOARD = #{defaultDashboard,jdbcType=VARCHAR},
+      LAST_UPDATE_PWD_DATE = #{lastUpdatePwdDate,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="removeByFields" >
+    update bap_user set enable = 0 
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </update>
+  <update id="removeByPrimaryKey" >
+    update bap_user set enable = 0  where 
+    ID = #{id,jdbcType=INTEGER} 
+  </update>
+  <delete id="deleteByFields" >
+    delete from bap_user
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </delete>
+  <select id="selectByFields" resultMap="BaseResultMap" >
+    select ID,USER_CODE,USER_NAME,USER_PASSWORD,ORG_CODE,EMPLOYEE_CODE,PAGESIZE, MENU_TYPE, SKIN_CODE, LAST_ROLE, DEFAULT_ROLE,STATUS,ENABLE,EFFECTIVE_DATE_START,EFFECTIVE_DATE_END,FAILED_COUNT, DEFAULT_DASHBOARD,LAST_UPDATE_PWD_DATE,DESCRIPTION,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_user
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </select>
+  <select id="selectByFieldsForUpdate" resultMap="BaseResultMap" >
+    select ID,USER_CODE,USER_NAME,USER_PASSWORD,ORG_CODE,EMPLOYEE_CODE,PAGESIZE, MENU_TYPE, SKIN_CODE, LAST_ROLE, DEFAULT_ROLE,STATUS,ENABLE,EFFECTIVE_DATE_START,EFFECTIVE_DATE_END,FAILED_COUNT, DEFAULT_DASHBOARD,LAST_UPDATE_PWD_DATE,DESCRIPTION,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_user
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+     for update
+  </select>
+  <select id="loadPage" resultMap="BaseResultMap" >
+    select ID,USER_CODE,USER_NAME,USER_PASSWORD,ORG_CODE,EMPLOYEE_CODE,PAGESIZE, MENU_TYPE, SKIN_CODE, LAST_ROLE, DEFAULT_ROLE,STATUS,ENABLE,EFFECTIVE_DATE_START,EFFECTIVE_DATE_END,FAILED_COUNT, DEFAULT_DASHBOARD,LAST_UPDATE_PWD_DATE,DESCRIPTION,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_user
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </select>
+  <sql id="Base_If_Condition" >
+    <if test="id != null" >
+        and ID = #{id,jdbcType=INTEGER} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        and USER_CODE LIKE #{userCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(userName)" >
+        and USER_NAME LIKE #{userName,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(userPassword)" >
+        and USER_PASSWORD = #{userPassword,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(orgCode)" >
+        and ORG_CODE = #{orgCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(employeeCode)" >
+        and EMPLOYEE_CODE = #{employeeCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(menuType)" >
+        and MENU_TYPE = #{menuType,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(skinCode)" >
+        and SKIN_CODE = #{skinCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(lastRole)" >
+        and LAST_ROLE = #{lastRole,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(defaultRole)" >
+        and DEFAULT_ROLE = #{defaultRole,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(status)" >
+        and STATUS = #{status,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        and ENABLE = #{enable,jdbcType=VARCHAR} 
+    </if>
+    <if test="effectiveDateStart != null" >
+        and EFFECTIVE_DATE_START = #{effectiveDateStart,jdbcType=TIMESTAMP} 
+    </if>
+    <if test="effectiveDateEnd != null" >
+        and EFFECTIVE_DATE_END = #{effectiveDateEnd,jdbcType=TIMESTAMP} 
+    </if>
+    <if test="failedCount != null" >
+        and FAILED_COUNT = #{failedCount,jdbcType=INTEGER} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(defaultDashboard)" >
+        and DEFAULT_DASHBOARD = #{defaultDashboard,jdbcType=VARCHAR} 
+    </if>
+    <if test="lastUpdatePwdDate != null" >
+        and LAST_UPDATE_PWD_DATE = #{lastUpdatePwdDate,jdbcType=TIMESTAMP} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        and DESCRIPTION = #{description,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        and CREATE_BY = #{createBy,jdbcType=VARCHAR} 
+    </if>
+    <if test="createDate != null" >
+        and CREATE_DATE = #{createDate,jdbcType=TIMESTAMP} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        and LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR} 
+    </if>
+    <if test="lastUpdateDate != null" >
+        and LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP} 
+    </if>
+  </sql>
+  
+  <select id="selectByRoleRelated" resultMap="BaseResultMap" >
+  	select U.* from bap_user U 
+	INNER JOIN bap_role_user_relation RUR on U.USER_CODE = RUR.USER_CODE
+	INNER JOIN bap_role R on RUR.ROLE_CODE = R.ROLE_CODE
+	<where>
+		R.ROLE_CODE = #{roleCode, jdbcType=VARCHAR}
+    	<if test="!@org.springframework.util.StringUtils@isEmpty(userCode) or !@org.springframework.util.StringUtils@isEmpty(userName)" >
+    		AND ( U.USER_CODE LIKE #{userCode,jdbcType=VARCHAR} OR U.USER_NAME LIKE #{userName,jdbcType=VARCHAR} )
+	    </if>
+	</where>
+  </select>
+  
+  <select id="selectByRoleUnRelated" resultMap="BaseResultMap" >
+  	SELECT 
+    <include refid="Base_Column_List" /> 
+    FROM bap_user 
+    <where>
+  		USER_CODE NOT IN (
+		  	SELECT U.USER_CODE from bap_user U 
+			INNER JOIN bap_role_user_relation RUR on U.USER_CODE = RUR.USER_CODE
+			INNER JOIN bap_role R on RUR.ROLE_CODE = R.ROLE_CODE
+			<where>
+				R.ROLE_CODE = #{roleCode, jdbcType=VARCHAR}
+			</where>
+		)
+    	<if test="!@org.springframework.util.StringUtils@isEmpty(userCode) or !@org.springframework.util.StringUtils@isEmpty(userName)" >
+    		AND ( USER_CODE LIKE #{userCode,jdbcType=VARCHAR} or USER_NAME LIKE #{userName,jdbcType=VARCHAR} )
+	    </if>
+	</where>
+  </select>
+  
+</mapper>

@@ -1,11 +1,10 @@
 package com.governer.domain.vo.response;
 
+import java.time.LocalDateTime;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @ApiModel("定时-查询返回值类")

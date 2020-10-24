@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.governer.mapper.RoleUserRelationPOMapper" >
+  <resultMap id="BaseResultMap" type="com.governer.domain.po.RoleUserRelationPO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_BY" property="lastUpdateBy" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROLE_CODE, USER_CODE, CREATE_BY, CREATE_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bap_role_user_relation
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bap_role_user_relation
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.governer.domain.po.RoleUserRelationPO" >
+    insert into bap_role_user_relation (ID, ROLE_CODE, USER_CODE, 
+      CREATE_BY, CREATE_DATE, LAST_UPDATE_BY, 
+      LAST_UPDATE_DATE)
+    values (#{id,jdbcType=INTEGER}, #{roleCode,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.governer.domain.po.RoleUserRelationPO" >
+    insert into bap_role_user_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(roleCode)" >
+        ROLE_CODE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        USER_CODE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        LAST_UPDATE_BY,
+      </if>
+      <if test="lastUpdateDate != null" >
+        LAST_UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(roleCode)" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.RoleUserRelationPO" >
+    update bap_role_user_relation
+    <set >
+      <if test="!@org.springframework.util.StringUtils@isEmpty(roleCode)" >
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null" >
+        LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.governer.domain.po.RoleUserRelationPO" >
+    update bap_role_user_relation
+    set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      USER_CODE = #{userCode,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="removeByFields" >
+    update bap_role_user_relation set enable_ = 0 
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </update>
+  <update id="removeByPrimaryKey" >
+    update bap_role_user_relation set enable_ = 0  where 
+    ID = #{id,jdbcType=INTEGER} 
+  </update>
+  <delete id="deleteByFields" >
+    delete from bap_role_user_relation
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </delete>
+  <select id="selectByFields" resultMap="BaseResultMap" >
+    select ID,ROLE_CODE,USER_CODE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_role_user_relation
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </select>
+  <select id="selectByFieldsForUpdate" resultMap="BaseResultMap" >
+    select ID,ROLE_CODE,USER_CODE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_role_user_relation
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+     for update
+  </select>
+  <select id="loadPage" resultMap="BaseResultMap" >
+    select ID,ROLE_CODE,USER_CODE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_role_user_relation
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </select>
+  <sql id="Base_If_Condition" >
+    <if test="id != null" >
+        and ID = #{id,jdbcType=INTEGER} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(roleCode)" >
+        and ROLE_CODE = #{roleCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(userCode)" >
+        and USER_CODE = #{userCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        and CREATE_BY = #{createBy,jdbcType=VARCHAR} 
+    </if>
+    <if test="createDate != null" >
+        and CREATE_DATE = #{createDate,jdbcType=TIMESTAMP} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        and LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR} 
+    </if>
+    <if test="lastUpdateDate != null" >
+        and LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP} 
+    </if>
+  </sql>
+</mapper>

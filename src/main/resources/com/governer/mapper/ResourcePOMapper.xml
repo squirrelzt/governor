@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.governer.mapper.ResourcePOMapper" >
+  <resultMap id="BaseResultMap" type="com.governer.domain.po.ResourcePO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RESOURCE_CODE" property="resourceCode" jdbcType="VARCHAR" />
+    <result column="RESOURCE_NAME" property="resourceName" jdbcType="VARCHAR" />
+    <result column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <result column="RESOURCE_PARENT" property="resourceParent" jdbcType="VARCHAR" />
+    <result column="RESOURCE_PATH" property="resourcePath" jdbcType="VARCHAR" />
+    <result column="RESOURCE_TYPE" property="resourceType" jdbcType="VARCHAR" />
+    <result column="RESOURCE_METHOD" property="resourceMethod" jdbcType="VARCHAR" />
+    <result column="RESOURCE_URL" property="resourceUrl" jdbcType="VARCHAR" />
+    <result column="RESOURCE_ICON" property="resourceIcon" jdbcType="VARCHAR" />
+    <result column="RESOURCE_DISPLAY" property="resourceDisplay" jdbcType="VARCHAR" />
+    <result column="SEQUENCE" property="sequence" jdbcType="INTEGER" />
+    <result column="ENABLE" property="enable" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_BY" property="lastUpdateBy" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RESOURCE_CODE, RESOURCE_NAME, APPLICATION, RESOURCE_PARENT, RESOURCE_PATH, RESOURCE_TYPE, 
+    RESOURCE_METHOD, RESOURCE_URL, RESOURCE_ICON, RESOURCE_DISPLAY, SEQUENCE, ENABLE, DESCRIPTION, 
+    CREATE_BY, CREATE_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bap_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bap_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.governer.domain.po.ResourcePO" >
+    insert into bap_resource (ID, RESOURCE_CODE, RESOURCE_NAME, 
+      APPLICATION, RESOURCE_PARENT, RESOURCE_PATH, RESOURCE_TYPE, 
+      RESOURCE_METHOD, RESOURCE_URL, RESOURCE_ICON, RESOURCE_DISPLAY, SEQUENCE, ENABLE, DESCRIPTION, 
+      CREATE_BY, CREATE_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE)
+    values (#{id,jdbcType=INTEGER}, #{resourceCode,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, 
+      #{application,jdbcType=VARCHAR}, #{resourceParent,jdbcType=VARCHAR}, #{resourcePath,jdbcType=VARCHAR}, 
+      #{resourceType,jdbcType=VARCHAR}, #{resourceMethod,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, 
+      #{resourceIcon,jdbcType=VARCHAR}, #{resourceDisplay,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}, #{enable,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.governer.domain.po.ResourcePO" >
+    insert into bap_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceCode)" >
+        RESOURCE_CODE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceName)" >
+        RESOURCE_NAME,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(application)" >
+        APPLICATION,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceParent)" >
+        RESOURCE_PARENT,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourcePath)" >
+        RESOURCE_PATH,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceType)" >
+        RESOURCE_TYPE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceMethod)" >
+        RESOURCE_METHOD,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceUrl)" >
+        RESOURCE_URL,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceIcon)" >
+        RESOURCE_ICON,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceDisplay)" >
+        RESOURCE_DISPLAY,
+      </if>
+      <if test="sequence != null" >
+        SEQUENCE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        ENABLE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        DESCRIPTION,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        LAST_UPDATE_BY,
+      </if>
+      <if test="lastUpdateDate != null" >
+        LAST_UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceCode)" >
+        #{resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceName)" >
+        #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(application)" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceParent)" >
+        #{resourceParent,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourcePath)" >
+        #{resourcePath,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceType)" >
+        #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceMethod)" >
+        #{resourceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceUrl)" >
+        #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceIcon)" >
+        #{resourceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceDisplay)" >
+        #{resourceDisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.governer.domain.po.ResourcePO" >
+    update bap_resource
+    <set >
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceCode)" >
+        RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceName)" >
+        RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(application)" >
+        APPLICATION = #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceParent)" >
+        RESOURCE_PARENT = #{resourceParent,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourcePath)" >
+        RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceType)" >
+        RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceMethod)" >
+        RESOURCE_METHOD = #{resourceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceUrl)" >
+        RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceIcon)" >
+        RESOURCE_ICON = #{resourceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(resourceDisplay)" >
+        RESOURCE_DISPLAY = #{resourceDisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        SEQUENCE = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        ENABLE = #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null" >
+        LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.governer.domain.po.ResourcePO" >
+    update bap_resource
+    set RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      APPLICATION = #{application,jdbcType=VARCHAR},
+      RESOURCE_PARENT = #{resourceParent,jdbcType=VARCHAR},
+      RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR},
+      RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      RESOURCE_METHOD = #{resourceMethod,jdbcType=VARCHAR},
+      RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+      RESOURCE_ICON = #{resourceIcon,jdbcType=VARCHAR},
+      RESOURCE_DISPLAY = #{resourceDisplay,jdbcType=VARCHAR},
+      SEQUENCE = #{sequence,jdbcType=INTEGER},
+      ENABLE = #{enable,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="removeByFields" >
+    update bap_resource set enable_ = 0 
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </update>
+  <update id="removeByPrimaryKey" >
+    update bap_resource set enable_ = 0  where 
+    ID = #{id,jdbcType=INTEGER} 
+  </update>
+  <delete id="deleteByFields" >
+    delete from bap_resource
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </delete>
+  <select id="selectByFields" resultMap="BaseResultMap" >
+    select ID,RESOURCE_CODE,RESOURCE_NAME,APPLICATION,RESOURCE_PARENT,RESOURCE_PATH,RESOURCE_TYPE,RESOURCE_METHOD,RESOURCE_URL,RESOURCE_ICON,RESOURCE_DISPLAY,SEQUENCE,ENABLE,DESCRIPTION,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_resource
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </select>
+  <select id="selectByFieldsForUpdate" resultMap="BaseResultMap" >
+    select ID,RESOURCE_CODE,RESOURCE_NAME,APPLICATION,RESOURCE_PARENT,RESOURCE_PATH,RESOURCE_TYPE,RESOURCE_METHOD,RESOURCE_URL,RESOURCE_ICON,RESOURCE_DISPLAY,SEQUENCE,ENABLE,DESCRIPTION,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_resource
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+     for update
+  </select>
+  <select id="loadPage" resultMap="BaseResultMap" >
+    select ID,RESOURCE_CODE,RESOURCE_NAME,APPLICATION,RESOURCE_PARENT,RESOURCE_PATH,RESOURCE_TYPE,RESOURCE_METHOD,RESOURCE_URL,RESOURCE_ICON,RESOURCE_DISPLAY,SEQUENCE,ENABLE,DESCRIPTION,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE from bap_resource
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+  </select>
+  <sql id="Base_If_Condition" >
+    <if test="id != null" >
+        and ID = #{id,jdbcType=INTEGER} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceCode)" >
+        and RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceName)" >
+        and RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(application)" >
+        and APPLICATION = #{application,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceParent)" >
+        and RESOURCE_PARENT = #{resourceParent,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourcePath)" >
+        and RESOURCE_PATH = #{resourcePath,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceType)" >
+        and RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceMethod)" >
+        and RESOURCE_METHOD = #{resourceMethod,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceUrl)" >
+        and RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceIcon)" >
+        and RESOURCE_ICON = #{resourceIcon,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(resourceDisplay)" >
+        and RESOURCE_DISPLAY = #{resourceDisplay,jdbcType=VARCHAR} 
+    </if>
+    <if test="sequence != null" >
+        and SEQUENCE = #{sequence,jdbcType=INTEGER} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(enable)" >
+        and ENABLE = #{enable,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(description)" >
+        and DESCRIPTION = #{description,jdbcType=VARCHAR} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(createBy)" >
+        and CREATE_BY = #{createBy,jdbcType=VARCHAR} 
+    </if>
+    <if test="createDate != null" >
+        and CREATE_DATE = #{createDate,jdbcType=TIMESTAMP} 
+    </if>
+    <if test="!@org.springframework.util.StringUtils@isEmpty(lastUpdateBy)" >
+        and LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR} 
+    </if>
+    <if test="lastUpdateDate != null" >
+        and LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP} 
+    </if>
+  </sql>
+  
+  <resultMap id="CustomResultMap" type="java.util.HashMap" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RESOURCE_CODE" property="resourceCode" jdbcType="VARCHAR" />
+    <result column="RESOURCE_NAME" property="resourceName" jdbcType="VARCHAR" />
+    <result column="APPLICATION" property="application" jdbcType="VARCHAR" />
+    <result column="RESOURCE_PARENT" property="resourceParent" jdbcType="VARCHAR" />
+    <result column="RESOURCE_PATH" property="resourcePath" jdbcType="VARCHAR" />
+    <result column="RESOURCE_TYPE" property="resourceType" jdbcType="VARCHAR" />
+    <result column="RESOURCE_METHOD" property="resourceMethod" jdbcType="VARCHAR" />
+    <result column="RESOURCE_URL" property="resourceUrl" jdbcType="VARCHAR" />
+    <result column="RESOURCE_ICON" property="resourceIcon" jdbcType="VARCHAR" />
+    <result column="RESOURCE_DISPLAY" property="resourceDisplay" jdbcType="VARCHAR" />
+    <result column="SEQUENCE" property="sequence" jdbcType="INTEGER" />
+    <result column="ENABLE" property="enable" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    
+    <result column="ISLEAF" property="isLeaf" jdbcType="VARCHAR" javaType="java.lang.Boolean" />
+    <result column="DISABLE" property="disable" jdbcType="VARCHAR" />
+    <result column="CHECKED" property="checked" jdbcType="VARCHAR" javaType="java.lang.Boolean" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectChilds" resultMap="CustomResultMap" >
+    select R.*, CASE WHEN CRP.RP IS NULL THEN 'true' ELSE 'false' END AS ISLEAF 
+    from bap_resource R
+    LEFT JOIN (select RESOURCE_PARENT AS RP from bap_resource GROUP BY RESOURCE_PARENT) CRP ON R.RESOURCE_CODE = CRP.RP
+    <where>
+    <include refid="Base_If_Condition" />
+    </where>
+    ORDER BY R.SEQUENCE
+  </select>
+  
+  <select id="selectByRole" resultMap="CustomResultMap" >
+  	SELECT R.*, CASE WHEN CRP.RP IS NULL THEN 'true' ELSE 'false' END AS ISLEAF, 
+	CASE WHEN REL.ROLE_CODE IS NOT NULL THEN 'true' ELSE 'false' END AS CHECKED, 
+	'caidan-' AS ICON 
+	FROM bap_resource R
+	LEFT JOIN (SELECT RESOURCE_PARENT AS RP FROM bap_resource GROUP BY RESOURCE_PARENT) CRP ON R.RESOURCE_CODE = CRP.RP
+	LEFT JOIN (
+		SELECT RG.ROLE_CODE, RGR.RESOURCE_CODE FROM bap_role RG
+		INNER JOIN bap_role_resource_relation RGR ON RG.ROLE_CODE = RGR.ROLE_CODE
+		<where>
+			RG.ROLE_CODE = #{roleCode, jdbcType=VARCHAR} AND RG.ENABLE = #{enable, jdbcType=VARCHAR}
+		</where> 
+	) REL ON R.RESOURCE_CODE = REL.RESOURCE_CODE 
+	<where>
+		AND R.ENABLE = '1'
+    </where>
+    ORDER BY R.SEQUENCE
+  </select>
+  
+  <select id="selectByCodes" resultMap="BaseResultMap" parameterType="java.util.List">
+    select 
+    <include refid="Base_Column_List" />
+    from bap_resource
+    <where>
+    	RESOURCE_CODE in
+    	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </where>
+  </select>
+  
+  <select id="selectRouters" resultMap="BaseResultMap" >
+	SELECT BR.* FROM bap_resource BR
+	INNER JOIN bap_role_resource_relation BRR on BR.RESOURCE_CODE = BRR.RESOURCE_CODE
+	INNER JOIN bap_role ARG on BRR.ROLE_CODE = ARG.ROLE_CODE
+	INNER JOIN bap_role_user_relation AEGR on ARG.ROLE_CODE = AEGR.ROLE_CODE
+	INNER JOIN bap_user AU on AEGR.USER_CODE = AU.USER_CODE
+	<where>
+		AU.USER_CODE = #{userCode, jdbcType=VARCHAR} 
+    	AND BR.RESOURCE_TYPE IN
+    	<foreach collection="resourceTypes" index="index" item="item" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+	</where>
+  	ORDER BY BR.SEQUENCE
+  </select>
+  
+</mapper>
