@@ -16,6 +16,8 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -27,6 +29,7 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public BaseResponse<List<ConfigResponseVO>> config(String appName, String name) {
         ConfigPOExample example = new ConfigPOExample();
+        example.setOrderByClause("id ASC");
         ConfigPOExample.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(appName)) {
             criteria.andAppNameEqualTo(appName);
@@ -42,25 +45,41 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public BaseResponse<Boolean> save(ConfigRequestVO requestVO) {
         ConfigPO configPO = ConfigVOConvert.INSTANCE.convertConfigRequestVO(requestVO);
-        long id = configPO.getId();
         configPO.setLastModStamp(LocalDateTime.now());
-        int count = configPOMapper.insertSelective(configPO);
+        Object id = configPO.getId();
+        int count = 0;
+        if (Objects.isNull(id)) {
+            count = configPOMapper.insertSelective(configPO);
+        } else {
+            ConfigPOExample example = new ConfigPOExample();
+            ConfigPOExample.Criteria criteria = example.createCriteria();
+            criteria.andIdEqualTo((long)id);
+            count = configPOMapper.updateByExampleSelective(configPO, example);
+        }
         if (1 == count) {
             return BaseResponse.ok(Boolean.TRUE);
         } else {
-            return BaseResponse.fail("新建失败");
+            return BaseResponse.fail("失败");
         }
     }
 
     @Override
     public BaseResponse<Boolean> start(List<ConfigRequestVO> requestVOList) {
-        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
+        List<ConfigRequestVO> stopedList = requestVOList.stream().filter(vo -> vo.getEnabled() == 0).collect(Collectors.toList());
+        if (stopedList.size() == 0) {
+            return BaseResponse.ok(Boolean.TRUE);
+        }
+        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(stopedList);
         return setEnabled(list, "1");
     }
 
     @Override
     public BaseResponse<Boolean> stop(List<ConfigRequestVO> requestVOList) {
-        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(requestVOList);
+        List<ConfigRequestVO> startedList = requestVOList.stream().filter(vo -> vo.getEnabled() == 1).collect(Collectors.toList());
+        if (startedList.size() == 0) {
+            return BaseResponse.ok(Boolean.TRUE);
+        }
+        List<ConfigPO> list = ConfigVOConvert.INSTANCE.convertConfigRequestVOList(startedList);
         return setEnabled(list, "0");
     }
 

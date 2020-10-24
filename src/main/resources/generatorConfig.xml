@@ -22,7 +22,7 @@
             <property name="suppressDate" value="true"/>
         </commentGenerator>
         <jdbcConnection driverClass="org.postgresql.Driver"
-                        connectionURL="jdbc:postgresql://192.168.8.108:5432/governer"
+                        connectionURL="jdbc:postgresql://192.168.8.106:5432/governer"
                         userId="postgres"
                         password="123456">
         </jdbcConnection>
@@ -44,7 +44,55 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="config" domainObjectName="ConfigPO">
+<!--        <table tableName="config" domainObjectName="ConfigPO">-->
+<!--            <columnOverride column="last_mod_stamp" property="lastModStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--        </table>-->
+<!--        <table tableName="ds_timer_m" domainObjectName="TimerM">-->
+<!--            <columnOverride column="create_stamp" property="createStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--            <columnOverride column="last_mod_stamp" property="lastModStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--        </table>-->
+<!--        <table tableName="ds_task_template" domainObjectName="TaskTemplatePO">-->
+<!--            <columnOverride column="create_stamp" property="createStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--            <columnOverride column="last_mod_stamp" property="lastModStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--        </table>-->
+<!--        <table tableName="ds_simple_task_template" domainObjectName="SimpleTaskTemplatePO">-->
+<!--            <columnOverride column="create_stamp" property="createStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--            <columnOverride column="last_mod_stamp" property="lastModStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--        </table>-->
+<!--        <table tableName="ds_batch_job_template" domainObjectName="BatchJobTemplatePO">-->
+<!--            <columnOverride column="create_stamp" property="createStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--            <columnOverride column="last_mod_stamp" property="lastModStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--        </table>-->
+<!--        <table tableName="ds_flow_detail_template" domainObjectName="FlowDetailTemplatePO">-->
+<!--            <columnOverride column="create_stamp" property="createStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--            <columnOverride column="last_mod_stamp" property="lastModStamp"-->
+<!--                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"-->
+<!--                            javaType="java.time.LocalDateTime"/>-->
+<!--        </table>-->
+        <table tableName="ds_flow_type_template" domainObjectName="FlowTypeTemplatePO">
+            <columnOverride column="create_stamp" property="createStamp"
+                            typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"
+                            javaType="java.time.LocalDateTime"/>
             <columnOverride column="last_mod_stamp" property="lastModStamp"
                             typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler" jdbcType="OTHER"
                             javaType="java.time.LocalDateTime"/>
